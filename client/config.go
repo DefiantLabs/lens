@@ -3,6 +3,7 @@ package client
 import (
 	"time"
 
+	"github.com/CosmWasm/wasmd/x/wasm"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	authz "github.com/cosmos/cosmos-sdk/x/authz/module"
@@ -54,6 +55,7 @@ var (
 		upgrade.AppModuleBasic{},
 		transfer.AppModuleBasic{},
 		ibc.AppModuleBasic{},
+		wasm.AppModuleBasic{},
 		osmosisGamm.AppModuleBasic{},
 		osmosisEpochs.AppModuleBasic{},
 		osmosisIncentives.AppModuleBasic{},

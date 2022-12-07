@@ -3,6 +3,7 @@ module github.com/strangelove-ventures/lens
 go 1.17
 
 require (
+	github.com/CosmWasm/wasmd v0.24.0
 	github.com/cosmos/cosmos-sdk v0.45.4 //0.45.3
 	github.com/cosmos/go-bip39 v1.0.0
 	github.com/gogo/protobuf v1.3.3
@@ -102,13 +103,13 @@ require (
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
-	github.com/cosmos/ibc-go/v2 v2.3.0
 	github.com/cosmos/ibc-go/v3 v3.0.0
 	github.com/google/go-github v17.0.0+incompatible
 )
 
 require (
 	github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4 // indirect
+	github.com/CosmWasm/wasmvm v1.0.0 // indirect
 	github.com/Workiva/go-datastructures v1.0.53 // indirect
 	github.com/coinbase/rosetta-sdk-go v0.7.0 // indirect
 	github.com/cosmos/gorocksdb v1.2.0 // indirect
@@ -118,6 +119,7 @@ require (
 	github.com/gogo/gateway v1.1.0 // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/orderedcode v0.0.1 // indirect
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/improbable-eng/grpc-web v0.14.1 // indirect
@@ -142,3 +144,6 @@ replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alp
 // replace github.com/99designs/keyring => github.com/cosmos/keyring v1.1.7-0.20210622111912-ef00f8ac3d76
 
 replace github.com/strangelove-ventures/lens => github.com/DefiantLabs/lens v0.0.1-dl
+
+// branch: v0.27.0.rc3-osmo, current tag: v0.27.0.rc3-osmo
+replace github.com/CosmWasm/wasmd => github.com/osmosis-labs/wasmd v0.27.0-rc2.0.20220517191021-59051aa18d58
