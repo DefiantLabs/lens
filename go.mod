@@ -143,7 +143,7 @@ replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alp
 
 // replace github.com/99designs/keyring => github.com/cosmos/keyring v1.1.7-0.20210622111912-ef00f8ac3d76
 
-replace github.com/strangelove-ventures/lens => github.com/DefiantLabs/lens v0.0.1-dl
+replace github.com/strangelove-ventures/lens => github.com/DefiantLabs/lens v0.0.5-dl
 
 // branch: v0.27.0.rc3-osmo, current tag: v0.27.0.rc3-osmo
 replace github.com/CosmWasm/wasmd => github.com/osmosis-labs/wasmd v0.27.0-rc2.0.20220517191021-59051aa18d58
