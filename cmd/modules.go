@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/CosmWasm/wasmd/x/wasm"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	authz "github.com/cosmos/cosmos-sdk/x/authz/module"
@@ -20,6 +21,15 @@ import (
 	upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
 	"github.com/cosmos/ibc-go/v3/modules/apps/transfer"
 	ibc "github.com/cosmos/ibc-go/v3/modules/core"
+	osmosisEpochs "github.com/osmosis-labs/osmosis/v9/x/epochs"
+	osmosisGamm "github.com/osmosis-labs/osmosis/v9/x/gamm"
+	osmosisIncentives "github.com/osmosis-labs/osmosis/v9/x/incentives"
+	osmosisLockup "github.com/osmosis-labs/osmosis/v9/x/lockup"
+	osmosisMint "github.com/osmosis-labs/osmosis/v9/x/mint"
+	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v9/x/pool-incentives"
+	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v9/x/superfluid"
+	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v9/x/tokenfactory"
+	osmosisTxFees "github.com/osmosis-labs/osmosis/v9/x/txfees"
 )
 
 // TODO: Import a bunch of custom modules like cosmwasm and osmosis
@@ -45,4 +55,14 @@ var ModuleBasics = []module.AppModuleBasic{
 	upgrade.AppModuleBasic{},
 	transfer.AppModuleBasic{},
 	ibc.AppModuleBasic{},
+	wasm.AppModuleBasic{},
+	osmosisGamm.AppModuleBasic{},
+	osmosisEpochs.AppModuleBasic{},
+	osmosisIncentives.AppModuleBasic{},
+	osmosisLockup.AppModuleBasic{},
+	osmosisMint.AppModuleBasic{},
+	osmosisPoolIncentives.AppModuleBasic{},
+	osmosisSuperfluid.AppModuleBasic{},
+	osmosisTokenFactory.AppModuleBasic{},
+	osmosisTxFees.AppModuleBasic{},
 }

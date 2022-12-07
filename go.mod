@@ -145,5 +145,7 @@ replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alp
 
 replace github.com/strangelove-ventures/lens => github.com/DefiantLabs/lens v0.0.5-dl
 
+replace github.com/cosmos/iavl => github.com/osmosis-labs/iavl v0.17.3-osmo-v7
+
 // branch: v0.27.0.rc3-osmo, current tag: v0.27.0.rc3-osmo
 replace github.com/CosmWasm/wasmd => github.com/osmosis-labs/wasmd v0.27.0-rc2.0.20220517191021-59051aa18d58
