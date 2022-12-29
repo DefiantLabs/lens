@@ -105,6 +105,7 @@ require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/cosmos/ibc-go/v3 v3.0.0
 	github.com/google/go-github v17.0.0+incompatible
+	github.com/tendermint/liquidity v1.5.0
 )
 
 require (
@@ -122,6 +123,7 @@ require (
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/orderedcode v0.0.1 // indirect
 	github.com/gorilla/handlers v1.5.1 // indirect
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.0.1 // indirect
 	github.com/improbable-eng/grpc-web v0.14.1 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/lib/pq v1.10.4 // indirect

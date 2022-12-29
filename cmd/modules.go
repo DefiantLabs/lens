@@ -30,6 +30,7 @@ import (
 	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v9/x/superfluid"
 	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v9/x/tokenfactory"
 	osmosisTxFees "github.com/osmosis-labs/osmosis/v9/x/txfees"
+	tendermintLiquidity "github.com/tendermint/liquidity/x/liquidity"
 )
 
 // TODO: Import a bunch of custom modules like cosmwasm and osmosis
@@ -65,4 +66,5 @@ var ModuleBasics = []module.AppModuleBasic{
 	osmosisSuperfluid.AppModuleBasic{},
 	osmosisTokenFactory.AppModuleBasic{},
 	osmosisTxFees.AppModuleBasic{},
+	tendermintLiquidity.AppModuleBasic{},
 }
