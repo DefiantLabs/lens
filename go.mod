@@ -105,6 +105,7 @@ require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/cosmos/ibc-go/v3 v3.0.0
 	github.com/google/go-github v17.0.0+incompatible
+	github.com/tendermint/liquidity v1.5.0
 )
 
 require (
@@ -132,7 +133,6 @@ require (
 	github.com/rogpeppe/go-internal v1.8.1 // indirect
 	github.com/rs/cors v1.8.2 // indirect
 	github.com/rs/zerolog v1.26.0 // indirect
-	github.com/tendermint/liquidity v1.5.0 // indirect
 	golang.org/x/crypto v0.0.0-20220507011949-2cf3adece122 // indirect
 	nhooyr.io/websocket v1.8.6 // indirect
 )
