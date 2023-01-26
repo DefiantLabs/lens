@@ -6,7 +6,6 @@ import (
 	"github.com/CosmWasm/wasmd/x/wasm"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
 	authz "github.com/cosmos/cosmos-sdk/x/authz/module"
 	"github.com/cosmos/cosmos-sdk/x/bank"
 	"github.com/cosmos/cosmos-sdk/x/capability"
@@ -68,7 +67,6 @@ var (
 		osmosisTokenFactory.AppModuleBasic{},
 		osmosisTxFees.AppModuleBasic{},
 		tendermintLiquidity.AppModuleBasic{},
-		vesting.AppModuleBasic{},
 	}
 )
 
