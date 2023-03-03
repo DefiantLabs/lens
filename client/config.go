@@ -33,7 +33,6 @@ import (
 	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v14/x/superfluid"
 	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v14/x/tokenfactory"
 	osmosisTxFees "github.com/osmosis-labs/osmosis/v14/x/txfees"
-	tendermintLiquidity "github.com/tendermint/liquidity/x/liquidity"
 )
 
 var (
@@ -67,7 +66,6 @@ var (
 		osmosisSuperfluid.AppModuleBasic{},
 		osmosisTokenFactory.AppModuleBasic{},
 		osmosisTxFees.AppModuleBasic{},
-		tendermintLiquidity.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 	}
 )
