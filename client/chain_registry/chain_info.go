@@ -12,9 +12,9 @@ import (
 	"path"
 	"time"
 
+	"github.com/DefiantLabs/lens/client"
 	"github.com/google/go-github/github"
 	"github.com/spf13/viper"
-	"github.com/strangelove-ventures/lens/client"
 	"golang.org/x/sync/errgroup"
 )
 

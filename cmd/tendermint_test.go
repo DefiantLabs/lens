@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DefiantLabs/lens/cmd"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/strangelove-ventures/lens/cmd"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/libs/bytes"

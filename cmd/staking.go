@@ -3,12 +3,12 @@ package cmd
 import (
 	"strings"
 
+	"github.com/DefiantLabs/lens/client/query"
 	sdkclient "github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/spf13/cobra"
-	"github.com/strangelove-ventures/lens/client/query"
 )
 
 func stakingDelegateCmd(a *appState) *cobra.Command {

@@ -6,6 +6,8 @@
 
 ---
 
+Lens is based on a repo by Strangelove Ventures. Paths have been changed due to issues with Go dependency management.
+
 `lens` is your lens to view the Cosmos :atom:. `lens` packs all the best practices in golang cosmos client development into one place and provides a simple and easy to use APIs provided by standard Cosmos chains. The `cmd` package implements the `lens` command line tool while the `client` package contains all the building blocks to build your own, complex, feature rich, Cosmos client in go.
 
 Intended use cases:
@@ -20,7 +22,7 @@ This is the start of ideas around how to implement the cosmos client libraries i
 ## **--INSTALL--**
 ---
 ```bash
-git clone https://github.com/strangelove-ventures/lens.git
+git clone https://github.com/DefiantLabs/lens.git
 
 cd lens
 

@@ -1,4 +1,4 @@
-module github.com/strangelove-ventures/lens
+module github.com/DefiantLabs/lens
 
 go 1.17
 
@@ -158,7 +158,7 @@ replace (
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.8.1
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	github.com/jhump/protoreflect => github.com/jhump/protoreflect v1.9.0
-	github.com/strangelove-ventures/lens => github.com/DefiantLabs/lens v0.0.8-dl
+	github.com/DefiantLabs/lens => github.com/DefiantLabs/lens v0.0.8-dl
 	github.com/tendermint/tendermint => github.com/informalsystems/tendermint v0.34.24
 	github.com/tendermint/tm-db => github.com/osmosis-labs/tm-db v0.6.5-0.20210911033928-ba9154613417
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2

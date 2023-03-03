@@ -3,9 +3,9 @@ package query
 import (
 	"fmt"
 
+	"github.com/DefiantLabs/lens/client"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
-	"github.com/strangelove-ventures/lens/client"
 )
 
 // TxRPC Get Transactions for the given block height.

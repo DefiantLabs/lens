@@ -1,11 +1,11 @@
 package query
 
 import (
+	"github.com/DefiantLabs/lens/client"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributionTypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	stakingTypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/strangelove-ventures/lens/client"
 	coretypes "github.com/tendermint/tendermint/rpc/core/types"
 )
 
