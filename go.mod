@@ -99,7 +99,6 @@ require (
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
-	github.com/cosmos/ibc-go/v3 v3.0.0
 	github.com/cosmos/ibc-go/v4 v4.2.0
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/osmosis-labs/osmosis/v14 v14.0.1
@@ -153,7 +152,6 @@ replace (
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.1.7-0.20210622111912-ef00f8ac3d76
 	github.com/ChainSafe/go-schnorrkel => github.com/ChainSafe/go-schnorrkel v0.0.0-20200405005733-88cbf1b4c40d
 	github.com/CosmWasm/wasmd => github.com/osmosis-labs/wasmd v0.30.0-osmo-v14
-	github.com/DefiantLabs/lens => github.com/DefiantLabs/lens v0.0.8-dl
 	github.com/confio/ics23/go => github.com/cosmos/cosmos-sdk/ics23/go v0.8.0
 	github.com/cosmos/cosmos-sdk => github.com/osmosis-labs/cosmos-sdk v0.45.1-0.20221118211718-545aed73e94e
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.8.1
