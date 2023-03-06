@@ -976,31 +976,6 @@ func (m *QueryTotalLiquidityResponse) GetLiquidity() github_com_cosmos_cosmos_sd
 	return nil
 }
 
-func init() {
-	proto.RegisterType((*QueryPoolRequest)(nil), "osmosis.gamm.v1beta1.QueryPoolRequest")
-	proto.RegisterType((*QueryPoolResponse)(nil), "osmosis.gamm.v1beta1.QueryPoolResponse")
-	proto.RegisterType((*QueryPoolsRequest)(nil), "osmosis.gamm.v1beta1.QueryPoolsRequest")
-	proto.RegisterType((*QueryPoolsResponse)(nil), "osmosis.gamm.v1beta1.QueryPoolsResponse")
-	proto.RegisterType((*QueryNumPoolsRequest)(nil), "osmosis.gamm.v1beta1.QueryNumPoolsRequest")
-	proto.RegisterType((*QueryNumPoolsResponse)(nil), "osmosis.gamm.v1beta1.QueryNumPoolsResponse")
-	proto.RegisterType((*QueryPoolParamsRequest)(nil), "osmosis.gamm.v1beta1.QueryPoolParamsRequest")
-	proto.RegisterType((*QueryPoolParamsResponse)(nil), "osmosis.gamm.v1beta1.QueryPoolParamsResponse")
-	proto.RegisterType((*QueryTotalSharesRequest)(nil), "osmosis.gamm.v1beta1.QueryTotalSharesRequest")
-	proto.RegisterType((*QueryTotalSharesResponse)(nil), "osmosis.gamm.v1beta1.QueryTotalSharesResponse")
-	proto.RegisterType((*QueryPoolAssetsRequest)(nil), "osmosis.gamm.v1beta1.QueryPoolAssetsRequest")
-	proto.RegisterType((*QueryPoolAssetsResponse)(nil), "osmosis.gamm.v1beta1.QueryPoolAssetsResponse")
-	proto.RegisterType((*QuerySpotPriceRequest)(nil), "osmosis.gamm.v1beta1.QuerySpotPriceRequest")
-	proto.RegisterType((*QuerySpotPriceResponse)(nil), "osmosis.gamm.v1beta1.QuerySpotPriceResponse")
-	proto.RegisterType((*QuerySwapExactAmountInRequest)(nil), "osmosis.gamm.v1beta1.QuerySwapExactAmountInRequest")
-	proto.RegisterType((*QuerySwapExactAmountInResponse)(nil), "osmosis.gamm.v1beta1.QuerySwapExactAmountInResponse")
-	proto.RegisterType((*QuerySwapExactAmountOutRequest)(nil), "osmosis.gamm.v1beta1.QuerySwapExactAmountOutRequest")
-	proto.RegisterType((*QuerySwapExactAmountOutResponse)(nil), "osmosis.gamm.v1beta1.QuerySwapExactAmountOutResponse")
-	proto.RegisterType((*QueryTotalLiquidityRequest)(nil), "osmosis.gamm.v1beta1.QueryTotalLiquidityRequest")
-	proto.RegisterType((*QueryTotalLiquidityResponse)(nil), "osmosis.gamm.v1beta1.QueryTotalLiquidityResponse")
-}
-
-func init() { proto.RegisterFile("osmosis/gamm/v1beta1/query.proto", fileDescriptor_d9a717df9ca609ef) }
-
 var fileDescriptor_d9a717df9ca609ef = []byte{
 	// 1327 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x57, 0xcf, 0x6f, 0x1b, 0xc5,

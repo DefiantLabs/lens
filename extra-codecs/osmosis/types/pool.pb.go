@@ -279,14 +279,6 @@ func (m *Pool) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Pool proto.InternalMessageInfo
 
-func init() {
-	proto.RegisterType((*PoolAsset)(nil), "osmosis.gamm.v1beta1.PoolAsset")
-	proto.RegisterType((*SmoothWeightChangeParams)(nil), "osmosis.gamm.v1beta1.SmoothWeightChangeParams")
-	proto.RegisterType((*PoolParams)(nil), "osmosis.gamm.v1beta1.PoolParams")
-	proto.RegisterType((*Pool)(nil), "osmosis.gamm.v1beta1.Pool")
-}
-
-func init() { proto.RegisterFile("osmosis/gamm/v1beta1/pool.proto", fileDescriptor_e5ab9bc6d45f98ce) }
 
 var fileDescriptor_e5ab9bc6d45f98ce = []byte{
 	// 802 bytes of a gzipped FileDescriptorProto
