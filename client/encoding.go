@@ -1,7 +1,8 @@
 package client
 
 import (
-	osmosisOldTypes "github.com/DefiantLabs/lens/extra-codecs/osmosis/types"
+	osmosisOldGammTypes "github.com/DefiantLabs/lens/extra-codecs/osmosis/gamm/types"
+	osmosisOldLockupTypes "github.com/DefiantLabs/lens/extra-codecs/osmosis/lockup/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/codec/types"
@@ -26,8 +27,11 @@ func MakeCodec(moduleBasics []module.AppModuleBasic) Codec {
 	modBasic.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 	//Register older types that some clients may need to parse, but that are no longer in the Osmosis SDK
-	osmosisOldTypes.RegisterLegacyAminoCodec(encodingConfig.Amino)
-	osmosisOldTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+	osmosisOldGammTypes.RegisterLegacyAminoCodec(encodingConfig.Amino)
+	osmosisOldGammTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+
+	// osmosisOldLockupTypes.RegisterLegacyAminoCodec(encodingConfig.Amino)
+	osmosisOldLockupTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 	return encodingConfig
 }
