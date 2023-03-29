@@ -511,7 +511,7 @@ func init() {
 	// proto.RegisterType((*MsgLockTokensResponse)(nil), "osmosis.lockup.MsgLockTokensResponse")
 	// proto.RegisterType((*MsgBeginUnlockingAll)(nil), "osmosis.lockup.MsgBeginUnlockingAll")
 	// proto.RegisterType((*MsgBeginUnlockingAllResponse)(nil), "osmosis.lockup.MsgBeginUnlockingAllResponse")
-	// proto.RegisterType((*MsgUnlockTokens)(nil), "osmosis.lockup.MsgUnlockTokens")
+	proto.RegisterType((*MsgUnlockTokens)(nil), "osmosis.lockup.MsgUnlockTokens")
 	// proto.RegisterType((*MsgUnlockTokensResponse)(nil), "osmosis.lockup.MsgUnlockTokensResponse")
 	// proto.RegisterType((*MsgBeginUnlocking)(nil), "osmosis.lockup.MsgBeginUnlocking")
 	// proto.RegisterType((*MsgBeginUnlockingResponse)(nil), "osmosis.lockup.MsgBeginUnlockingResponse")

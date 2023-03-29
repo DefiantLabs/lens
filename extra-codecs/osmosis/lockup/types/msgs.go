@@ -35,3 +35,25 @@ func (m MsgUnlockPeriodLock) GetSigners() []sdk.AccAddress {
 	owner, _ := sdk.AccAddressFromBech32(m.Owner)
 	return []sdk.AccAddress{owner}
 }
+
+var _ sdk.Msg = &MsgUnlockTokens{}
+
+// NewMsgUnlockTokens creates a message to begin unlocking all tokens of a user
+func NewMsgUnlockTokens(owner sdk.AccAddress) *MsgUnlockTokens {
+	return &MsgUnlockTokens{
+		Owner: owner.String(),
+	}
+}
+
+func (m MsgUnlockTokens) Route() string { return RouterKey }
+func (m MsgUnlockTokens) Type() string  { return TypeMsgUnlockTokens }
+func (m MsgUnlockTokens) ValidateBasic() error {
+	return nil
+}
+func (m MsgUnlockTokens) GetSignBytes() []byte {
+	return sdk.MustSortJSON(ModuleCdc.MustMarshalJSON(&m))
+}
+func (m MsgUnlockTokens) GetSigners() []sdk.AccAddress {
+	owner, _ := sdk.AccAddressFromBech32(m.Owner)
+	return []sdk.AccAddress{owner}
+}
