@@ -24,15 +24,16 @@ import (
 	upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
 	"github.com/cosmos/ibc-go/v4/modules/apps/transfer"
 	ibc "github.com/cosmos/ibc-go/v4/modules/core"
-	osmosisEpochs "github.com/osmosis-labs/osmosis/v14/x/epochs"
-	osmosisGamm "github.com/osmosis-labs/osmosis/v14/x/gamm"
-	osmosisIncentives "github.com/osmosis-labs/osmosis/v14/x/incentives"
-	osmosisLockup "github.com/osmosis-labs/osmosis/v14/x/lockup"
-	osmosisMint "github.com/osmosis-labs/osmosis/v14/x/mint"
-	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v14/x/pool-incentives"
-	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v14/x/superfluid"
-	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v14/x/tokenfactory"
-	osmosisTxFees "github.com/osmosis-labs/osmosis/v14/x/txfees"
+	osmosisEpochs "github.com/osmosis-labs/osmosis/v15/x/epochs"
+	osmosisGamm "github.com/osmosis-labs/osmosis/v15/x/gamm"
+	osmosisIncentives "github.com/osmosis-labs/osmosis/v15/x/incentives"
+	osmosisLockup "github.com/osmosis-labs/osmosis/v15/x/lockup"
+	osmosisMint "github.com/osmosis-labs/osmosis/v15/x/mint"
+	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v15/x/pool-incentives"
+	osmosisPoolManager "github.com/osmosis-labs/osmosis/v15/x/poolmanager/module"
+	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v15/x/superfluid"
+	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v15/x/tokenfactory"
+	osmosisTxFees "github.com/osmosis-labs/osmosis/v15/x/txfees"
 )
 
 var (
@@ -66,6 +67,7 @@ var (
 		osmosisSuperfluid.AppModuleBasic{},
 		osmosisTokenFactory.AppModuleBasic{},
 		osmosisTxFees.AppModuleBasic{},
+		osmosisPoolManager.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 	}
 )
