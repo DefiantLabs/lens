@@ -40,7 +40,10 @@ func TxsRPC(q *Query, req *txTypes.GetTxsEventRequest, codec client.Codec) (*txT
 	}
 
 	for _, tx := range res.GetTxs() {
-		tx.UnpackInterfaces(codec.InterfaceRegistry)
+		err := tx.UnpackInterfaces(codec.InterfaceRegistry)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return res, nil

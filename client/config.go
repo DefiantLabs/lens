@@ -31,6 +31,7 @@ import (
 	osmosisMint "github.com/osmosis-labs/osmosis/v15/x/mint"
 	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v15/x/pool-incentives"
 	osmosisPoolManager "github.com/osmosis-labs/osmosis/v15/x/poolmanager/module"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v15/x/protorev"
 	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v15/x/superfluid"
 	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v15/x/tokenfactory"
 	osmosisTxFees "github.com/osmosis-labs/osmosis/v15/x/txfees"
@@ -68,6 +69,7 @@ var (
 		osmosisTokenFactory.AppModuleBasic{},
 		osmosisTxFees.AppModuleBasic{},
 		osmosisPoolManager.AppModuleBasic{},
+		osmosisProtorev.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 	}
 )
