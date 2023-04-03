@@ -1,16 +1,21 @@
 package query
 
 import (
+	"github.com/DefiantLabs/lens/client"
+	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributionTypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	stakingTypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/strangelove-ventures/lens/client"
 	coretypes "github.com/tendermint/tendermint/rpc/core/types"
 )
 
 type Query struct {
 	Client  *client.ChainClient
 	Options *QueryOptions
+}
+
+func (q *Query) TxByHeight(cc client.Codec) (*txTypes.GetTxsEventResponse, error) {
+	return TxsAtHeightRPC(q, q.Options.Height, cc)
 }
 
 // Bank queries

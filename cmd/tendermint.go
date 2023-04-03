@@ -22,10 +22,10 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/DefiantLabs/lens/client"
+	"github.com/DefiantLabs/lens/client/query"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/spf13/cobra"
-	"github.com/strangelove-ventures/lens/client"
-	"github.com/strangelove-ventures/lens/client/query"
 )
 
 // tendermintCmd represents the tendermint command

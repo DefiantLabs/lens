@@ -8,8 +8,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
+	"github.com/DefiantLabs/lens/client"
 	"github.com/spf13/cobra"
-	"github.com/strangelove-ventures/lens/client"
 	"gopkg.in/yaml.v2"
 )
 

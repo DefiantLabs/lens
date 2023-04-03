@@ -5,9 +5,9 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/DefiantLabs/lens/client"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/spf13/cobra"
-	"github.com/strangelove-ventures/lens/client"
 )
 
 // crosschainCmd represents the command to get balances across chains

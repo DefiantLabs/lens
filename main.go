@@ -16,7 +16,7 @@ limitations under the License.
 package main
 
 import (
-	"github.com/strangelove-ventures/lens/cmd"
+	"github.com/DefiantLabs/lens/cmd"
 )
 
 func main() {

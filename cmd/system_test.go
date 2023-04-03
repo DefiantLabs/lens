@@ -5,7 +5,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/strangelove-ventures/lens/cmd"
+	"github.com/DefiantLabs/lens/cmd"
 )
 
 // System is a system under test.

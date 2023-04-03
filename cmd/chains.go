@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/strangelove-ventures/lens/client/chain_registry"
+	"github.com/DefiantLabs/lens/client/chain_registry"
 
 	"github.com/spf13/cobra"
 )

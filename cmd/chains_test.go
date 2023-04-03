@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"testing"
 
+	"github.com/DefiantLabs/lens/client"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/strangelove-ventures/lens/client"
 	"github.com/stretchr/testify/require"
 )
 
