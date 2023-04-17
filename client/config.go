@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/CosmWasm/wasmd/x/wasm"
+	tendermintLiquidity "github.com/DefiantLabs/lens/tendermint/x/liquidity"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
@@ -71,6 +72,7 @@ var (
 		osmosisPoolManager.AppModuleBasic{},
 		osmosisProtorev.AppModuleBasic{},
 		vesting.AppModuleBasic{},
+		tendermintLiquidity.AppModuleBasic{},
 	}
 )
 
