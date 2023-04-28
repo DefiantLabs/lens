@@ -3,6 +3,7 @@ package client
 import (
 	osmosisOldGammTypes "github.com/DefiantLabs/lens/extra-codecs/osmosis/gamm/types"
 	osmosisOldLockupTypes "github.com/DefiantLabs/lens/extra-codecs/osmosis/lockup/types"
+	tendermintTypes "github.com/DefiantLabs/lens/x/liquidity/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/codec/types"
@@ -32,6 +33,8 @@ func MakeCodec(moduleBasics []module.AppModuleBasic) Codec {
 
 	// osmosisOldLockupTypes.RegisterLegacyAminoCodec(encodingConfig.Amino)
 	osmosisOldLockupTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+
+	tendermintTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 	return encodingConfig
 }
