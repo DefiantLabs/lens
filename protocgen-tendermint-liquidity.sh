@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# WARNING: This script is currently only used for generating the proto files for Tendermint Liquidity
+# If we ever need to run this script for other modules, we will need to modify it a bit
+# The reasons for that will be noted in other comments below
 set -eo pipefail
 
 protoc_gen_gocosmos() {
@@ -15,6 +18,9 @@ protoc_gen_gocosmos
 
 proto_dirs=$(find ./proto -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
 for dir in $proto_dirs; do
+  # I used v1.17.0 of buf, which has moved the protoc command under "alpha"
+  # Apparently, the devs do not recommend using buf this way
+  # See this issue: https://github.com/bufbuild/buf/issues/1215
   buf alpha protoc \
     -I "proto" \
     -I "third_party/proto" \
@@ -26,5 +32,6 @@ Mgoogle/protobuf/any.proto=github.com/cosmos/cosmos-sdk/codec/types:. \
 done
 
 # move proto files to the right places
-cp -r github.com/tendermint/liquidity/* ./
+# We move the Tendermint protos into the tendermint subfolder
+cp -r github.com/tendermint/liquidity/* ./tendermint/
 rm -rf github.com
