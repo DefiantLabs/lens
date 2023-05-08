@@ -16,13 +16,13 @@ protoc_gen_gocosmos() {
 
 protoc_gen_gocosmos
 
-proto_dirs=$(find ./proto_tendermint -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
+proto_dirs=$(find ./proto_osmosis -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
 for dir in $proto_dirs; do
   # I used v1.17.0 of buf, which has moved the protoc command under "alpha"
   # Apparently, the devs do not recommend using buf this way
   # See this issue: https://github.com/bufbuild/buf/issues/1215
   buf alpha protoc \
-    -I "proto_tendermint" \
+    -I "proto_osmosis" \
     -I "third_party/proto" \
     --gocosmos_out=plugins=interfacetype+grpc,\
 Mgoogle/protobuf/any.proto=github.com/cosmos/cosmos-sdk/codec/types:. \
@@ -33,5 +33,5 @@ done
 
 # move proto files to the right places
 # We move the Tendermint protos into the tendermint subfolder
-cp -r github.com/tendermint/liquidity/* ./tendermint/
+cp -r github.com/osmosis-labs/* ./osmosis/
 rm -rf github.com
