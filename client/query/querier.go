@@ -2,6 +2,7 @@ package query
 
 import (
 	"github.com/DefiantLabs/lens/client"
+	epochsTypes "github.com/DefiantLabs/lens/osmosis/x/epochs/types"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributionTypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
@@ -105,4 +106,10 @@ func (q *Query) ABCIInfo() (*coretypes.ResultABCIInfo, error) {
 func (q *Query) ABCIQuery(path string, data string, prove bool) (*coretypes.ResultABCIQuery, error) {
 	/// TODO: In the future have some logic to route the query to the appropriate client (gRPC or RPC)
 	return ABCIQueryRPC(q, path, data, prove)
+}
+
+func (q *Query) EpochsAtHeight(height int64) (*epochsTypes.QueryEpochsInfoResponse, error) {
+	/// TODO: In the future have some logic to route the query to the appropriate client (gRPC or RPC)
+	resp, err := EpochsAtHeightRPC(q, height)
+	return resp, err
 }
