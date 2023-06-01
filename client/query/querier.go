@@ -113,3 +113,7 @@ func (q *Query) EpochsAtHeight(height int64) (*epochsTypes.QueryEpochsInfoRespon
 	resp, err := EpochsAtHeightRPC(q, height)
 	return resp, err
 }
+
+func (q *Query) BlockSearchEpochStartsLessThanHeight(height int64) (*coretypes.ResultBlockSearch, error) {
+	return BlockSearchEpochStartsLessThanHeightRPC(q, height, 1, 100)
+}

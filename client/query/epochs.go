@@ -1,7 +1,10 @@
 package query
 
 import (
+	"fmt"
+
 	epochsTypes "github.com/DefiantLabs/lens/osmosis/x/epochs/types"
+	coretypes "github.com/tendermint/tendermint/rpc/core/types"
 )
 
 func EpochsAtHeightRPC(q *Query, height int64) (*epochsTypes.QueryEpochsInfoResponse, error) {
@@ -19,4 +22,18 @@ func EpochsAtHeightRPC(q *Query, height int64) (*epochsTypes.QueryEpochsInfoResp
 		return nil, err
 	}
 	return res, nil
+}
+
+// BlockSearchEpochStartsLessThanHeightRPC searches for blocks with the epoch_start.epoch_number event with height less than the given height. This query only makes sense for Osmosis, which has the Epoch module emitting this event
+// in the BeginBlock events.
+func BlockSearchEpochStartsLessThanHeightRPC(q *Query, height int64, page int, perPage int) (*coretypes.ResultBlockSearch, error) {
+	ctx, cancel := q.GetQueryContext()
+	defer cancel()
+
+	resp, err := q.Client.RPCClient.BlockSearch(ctx, fmt.Sprintf("block.height<%d AND epoch_start.epoch_number EXISTS", height), &page, &perPage, "")
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
 }
