@@ -3,6 +3,7 @@ package query
 import (
 	"github.com/DefiantLabs/lens/client"
 	epochsTypes "github.com/DefiantLabs/lens/osmosis/x/epochs/types"
+	protorevTypes "github.com/DefiantLabs/lens/osmosis/x/protorev/types"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributionTypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
@@ -116,4 +117,10 @@ func (q *Query) EpochsAtHeight(height int64) (*epochsTypes.QueryEpochsInfoRespon
 
 func (q *Query) BlockSearchEpochStartsLessThanHeight(height int64) (*coretypes.ResultBlockSearch, error) {
 	return BlockSearchEpochStartsLessThanHeightRPC(q, height, 1, 100)
+}
+
+func (q *Query) ProtorevDeveloperAccount() (*protorevTypes.QueryGetProtoRevDeveloperAccountResponse, error) {
+	/// TODO: In the future have some logic to route the query to the appropriate client (gRPC or RPC)
+	resp, err := ProtorevDeveloperAccountRPC(q)
+	return resp, err
 }
