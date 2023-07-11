@@ -24,6 +24,7 @@ import (
 	upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
 	"github.com/cosmos/ibc-go/v4/modules/apps/transfer"
 	ibc "github.com/cosmos/ibc-go/v4/modules/core"
+	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v16/x/concentrated-liquidity/clmodule"
 	osmosisGamm "github.com/osmosis-labs/osmosis/v16/x/gamm"
 	osmosisIncentives "github.com/osmosis-labs/osmosis/v16/x/incentives"
 	osmosisLockup "github.com/osmosis-labs/osmosis/v16/x/lockup"
@@ -70,6 +71,7 @@ var (
 		osmosisTxFees.AppModuleBasic{},
 		osmosisPoolManager.AppModuleBasic{},
 		osmosisProtorev.AppModuleBasic{},
+		osmosisConcentratedLiquidity.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 	}
 )
