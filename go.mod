@@ -101,7 +101,7 @@ require (
 	github.com/cosmos/gogoproto v1.4.6
 	github.com/cosmos/ibc-go/v4 v4.3.1
 	github.com/google/go-github v17.0.0+incompatible
-	github.com/osmosis-labs/osmosis/v16 v16.0.0
+	github.com/osmosis-labs/osmosis/v16 v16.1.1
 	github.com/osmosis-labs/osmosis/x/epochs v0.0.1
 )
 
@@ -138,7 +138,7 @@ require (
 	github.com/minio/highwayhash v1.0.2 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/osmosis-labs/osmosis/osmomath v0.0.5 // indirect
-	github.com/osmosis-labs/osmosis/osmoutils v0.0.5 // indirect
+	github.com/osmosis-labs/osmosis/osmoutils v0.0.6-0.20230709040235-cbf530ed88cc // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
 	github.com/rakyll/statik v0.1.7 // indirect
 	github.com/rs/cors v1.8.2 // indirect
