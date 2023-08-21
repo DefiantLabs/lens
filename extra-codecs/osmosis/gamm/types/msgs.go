@@ -145,3 +145,24 @@ func (msg MsgExitSwapShareAmountIn) GetSigners() []sdk.AccAddress {
 	}
 	return []sdk.AccAddress{sender}
 }
+
+// CreatePool
+func (msg MsgCreateBalancerPool) Route() string { return "" }
+
+func (msg MsgCreateBalancerPool) Type() string { return "" }
+
+func (msg MsgCreateBalancerPool) ValidateBasic() error {
+	panic("MsgCreateBalancerPool ValidateBasic Unimplemented")
+}
+
+func (msg MsgCreateBalancerPool) GetSignBytes() []byte {
+	panic("MsgCreateBalancerPool GetSignBytes Unimplemented")
+}
+
+func (msg MsgCreateBalancerPool) GetSigners() []sdk.AccAddress {
+	addr, err := sdk.AccAddressFromBech32(msg.Sender)
+	if err != nil {
+		panic(err)
+	}
+	return []sdk.AccAddress{addr}
+}
