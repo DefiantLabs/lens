@@ -35,6 +35,7 @@ import (
 	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v16/x/superfluid"
 	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v16/x/tokenfactory"
 	osmosisTxFees "github.com/osmosis-labs/osmosis/v16/x/txfees"
+	osmosisValsetPref "github.com/osmosis-labs/osmosis/v16/x/valset-pref/valpref-module"
 	osmosisEpochs "github.com/osmosis-labs/osmosis/x/epochs"
 )
 
@@ -73,6 +74,7 @@ var (
 		osmosisProtorev.AppModuleBasic{},
 		osmosisConcentratedLiquidity.AppModuleBasic{},
 		vesting.AppModuleBasic{},
+		osmosisValsetPref.AppModuleBasic{},
 	}
 )
 
