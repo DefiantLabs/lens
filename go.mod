@@ -1,10 +1,10 @@
 module github.com/DefiantLabs/lens
 
-go 1.17
+go 1.19
 
 require (
 	github.com/CosmWasm/wasmd v0.31.0
-	github.com/cosmos/cosmos-sdk v0.47.3 //0.45.3
+	github.com/cosmos/cosmos-sdk v0.47.4 //0.45.3
 	github.com/cosmos/go-bip39 v1.0.0
 	github.com/gogo/protobuf v1.3.3
 	github.com/google/go-cmp v0.5.9
@@ -14,9 +14,9 @@ require (
 	github.com/spf13/viper v1.16.0
 	github.com/stretchr/testify v1.8.4
 	github.com/tendermint/tendermint v0.37.0-rc1
-	golang.org/x/sync v0.2.0
-	golang.org/x/term v0.10.0
-	google.golang.org/grpc v1.56.2
+	golang.org/x/sync v0.3.0
+	golang.org/x/term v0.11.0
+	google.golang.org/grpc v1.57.0
 	gopkg.in/yaml.v2 v2.4.0
 	gopkg.in/yaml.v3 v3.0.1
 )
@@ -88,21 +88,23 @@ require (
 	github.com/tendermint/tm-db v0.6.8-0.20220506192307-f628bb5dc95b // indirect; indirect, was 0.6.7
 	github.com/zondax/hid v0.9.1 // indirect
 	go.etcd.io/bbolt v1.3.6 // indirect
-	golang.org/x/net v0.12.0 // indirect
-	golang.org/x/sys v0.10.0 // indirect
-	golang.org/x/text v0.11.0 // indirect
-	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1
+	golang.org/x/net v0.14.0 // indirect
+	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/text v0.12.0 // indirect
+	google.golang.org/genproto v0.0.0-20230803162519-f966b187b2e5 // indirect
 	google.golang.org/protobuf v1.31.0
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
 
 require (
+	cosmossdk.io/math v1.1.2
 	github.com/avast/retry-go v3.0.0+incompatible
-	github.com/cosmos/gogoproto v1.4.6
+	github.com/cosmos/gogoproto v1.4.11
 	github.com/cosmos/ibc-go/v4 v4.3.1
 	github.com/google/go-github v17.0.0+incompatible
-	github.com/osmosis-labs/osmosis/v16 v16.1.2
-	github.com/osmosis-labs/osmosis/x/epochs v0.0.1
+	github.com/osmosis-labs/osmosis/v19 v19.0.0
+	github.com/osmosis-labs/osmosis/x/epochs v0.0.2
+	google.golang.org/genproto/googleapis/api v0.0.0-20230726155614-23370e0ffb3e
 )
 
 require (
@@ -110,8 +112,9 @@ require (
 	github.com/CosmWasm/wasmvm v1.2.1 // indirect
 	github.com/Workiva/go-datastructures v1.0.53 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
+	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/coinbase/rosetta-sdk-go v0.7.9 // indirect
-	github.com/cosmos/cosmos-proto v1.0.0-beta.2 // indirect
+	github.com/cosmos/cosmos-proto v1.0.0-beta.3 // indirect
 	github.com/cosmos/gorocksdb v1.2.0 // indirect
 	github.com/creachadair/taskgroup v0.3.2 // indirect
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
@@ -122,7 +125,7 @@ require (
 	github.com/go-kit/log v0.2.1 //indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/gogo/gateway v1.1.0 // indirect
-	github.com/golang/glog v1.1.0 // indirect
+	github.com/golang/glog v1.1.1 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/flatbuffers v2.0.8+incompatible // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
@@ -133,12 +136,12 @@ require (
 	github.com/keybase/go-keychain v0.0.0-20190712205309-48d3d31d256d // indirect
 	github.com/klauspost/compress v1.15.11 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
-	github.com/lib/pq v1.10.7 // indirect
+	github.com/lib/pq v1.10.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/minio/highwayhash v1.0.2 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
-	github.com/osmosis-labs/osmosis/osmomath v0.0.5 // indirect
-	github.com/osmosis-labs/osmosis/osmoutils v0.0.6-0.20230718110737-18371921cd51 // indirect
+	github.com/osmosis-labs/osmosis/osmomath v0.0.6 // indirect
+	github.com/osmosis-labs/osmosis/osmoutils v0.0.6 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
 	github.com/rakyll/statik v0.1.7 // indirect
 	github.com/rs/cors v1.8.2 // indirect
@@ -146,14 +149,17 @@ require (
 	github.com/tidwall/btree v1.6.0 // indirect
 	github.com/zondax/ledger-go v0.14.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/crypto v0.11.0 // indirect
-	golang.org/x/exp v0.0.0-20230131160201-f062dba9d201 // indirect
+	golang.org/x/arch v0.3.0 // indirect
+	golang.org/x/crypto v0.12.0 // indirect
+	golang.org/x/exp v0.0.0-20230811145659-89c5cff77bcb // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20230815205213-6bfd019c3878 // indirect
 	nhooyr.io/websocket v1.8.7 // indirect
 )
 
 replace (
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.1.7-0.20210622111912-ef00f8ac3d76
 	github.com/ChainSafe/go-schnorrkel => github.com/ChainSafe/go-schnorrkel v0.0.0-20200405005733-88cbf1b4c40d
+	// osmosis-patched wasmd.
 	github.com/CosmWasm/wasmd => github.com/osmosis-labs/wasmd v0.31.0-osmo-v16
 	// Security patch for wasmvm. See https://github.com/CosmWasm/advisories/blob/main/CWAs/CWA-2023-002.md
 	github.com/CosmWasm/wasmvm => github.com/CosmWasm/wasmvm v1.2.3
@@ -164,10 +170,8 @@ replace (
 
 	// N.B. v0.19.5 contains a breaking change to the IAVL API
 	github.com/cosmos/iavl v0.19.5 => github.com/cosmos/iavl v0.19.4
-	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.8.1
 	// use cosmos-compatible protobufs
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
-	github.com/jhump/protoreflect => github.com/jhump/protoreflect v1.9.0
 
 	// Informal Tendermint fork
 	github.com/tendermint/tendermint => github.com/informalsystems/tendermint v0.34.24
