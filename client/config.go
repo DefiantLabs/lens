@@ -25,6 +25,7 @@ import (
 	"github.com/cosmos/ibc-go/v4/modules/apps/transfer"
 	ibc "github.com/cosmos/ibc-go/v4/modules/core"
 	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v19/x/concentrated-liquidity/clmodule"
+	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v19/x/cosmwasmpool/module"
 	osmosisGamm "github.com/osmosis-labs/osmosis/v19/x/gamm"
 	osmosisIncentives "github.com/osmosis-labs/osmosis/v19/x/incentives"
 	osmosisLockup "github.com/osmosis-labs/osmosis/v19/x/lockup"
@@ -75,6 +76,7 @@ var (
 		osmosisConcentratedLiquidity.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 		osmosisValsetPref.AppModuleBasic{},
+		osmosisCosmWasmPool.AppModuleBasic{},
 	}
 )
 
