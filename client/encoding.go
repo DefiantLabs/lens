@@ -1,9 +1,6 @@
 package client
 
 import (
-	osmosisOldGammTypes "github.com/DefiantLabs/lens/extra-codecs/osmosis/gamm/types"
-	osmosisOldLockupTypes "github.com/DefiantLabs/lens/extra-codecs/osmosis/lockup/types"
-	tendermintLiquidityTypes "github.com/DefiantLabs/lens/tendermint/x/liquidity/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/codec/types"
@@ -28,14 +25,14 @@ func MakeCodec(moduleBasics []module.AppModuleBasic) Codec {
 	modBasic.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 	//Register older types that some clients may need to parse, but that are no longer in the Osmosis SDK
-	osmosisOldGammTypes.RegisterLegacyAminoCodec(encodingConfig.Amino)
-	osmosisOldGammTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+	// osmosisOldGammTypes.RegisterLegacyAminoCodec(encodingConfig.Amino)
+	// osmosisOldGammTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 	// osmosisOldLockupTypes.RegisterLegacyAminoCodec(encodingConfig.Amino)
-	osmosisOldLockupTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+	// osmosisOldLockupTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 	//Register
-	tendermintLiquidityTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+	// tendermintLiquidityTypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 	return encodingConfig
 }

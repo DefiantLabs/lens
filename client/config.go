@@ -12,31 +12,35 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/capability"
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	"github.com/cosmos/cosmos-sdk/x/distribution"
-	distrclient "github.com/cosmos/cosmos-sdk/x/distribution/client"
+
+	// distrclient "github.com/cosmos/cosmos-sdk/x/distribution/client/cli"
 	feegrant "github.com/cosmos/cosmos-sdk/x/feegrant/module"
 	"github.com/cosmos/cosmos-sdk/x/gov"
 	"github.com/cosmos/cosmos-sdk/x/mint"
 	"github.com/cosmos/cosmos-sdk/x/params"
-	paramsclient "github.com/cosmos/cosmos-sdk/x/params/client"
+
+	// paramsclient "github.com/cosmos/cosmos-sdk/x/params/client"
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	"github.com/cosmos/cosmos-sdk/x/upgrade"
-	upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
-	"github.com/cosmos/ibc-go/v4/modules/apps/transfer"
-	ibc "github.com/cosmos/ibc-go/v4/modules/core"
-	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v19/x/concentrated-liquidity/clmodule"
-	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v19/x/cosmwasmpool/module"
-	osmosisGamm "github.com/osmosis-labs/osmosis/v19/x/gamm"
-	osmosisIncentives "github.com/osmosis-labs/osmosis/v19/x/incentives"
-	osmosisLockup "github.com/osmosis-labs/osmosis/v19/x/lockup"
-	osmosisMint "github.com/osmosis-labs/osmosis/v19/x/mint"
-	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v19/x/pool-incentives"
-	osmosisPoolManager "github.com/osmosis-labs/osmosis/v19/x/poolmanager/module"
-	osmosisProtorev "github.com/osmosis-labs/osmosis/v19/x/protorev"
-	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v19/x/superfluid"
-	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v19/x/tokenfactory"
-	osmosisTxFees "github.com/osmosis-labs/osmosis/v19/x/txfees"
-	osmosisValsetPref "github.com/osmosis-labs/osmosis/v19/x/valset-pref/valpref-module"
+
+	// upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
+	"github.com/cosmos/ibc-go/v7/modules/apps/transfer"
+	ibc "github.com/cosmos/ibc-go/v7/modules/core"
+	ibcClient "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
+	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v21/x/concentrated-liquidity/clmodule"
+	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v21/x/cosmwasmpool/module"
+	osmosisGamm "github.com/osmosis-labs/osmosis/v21/x/gamm"
+	osmosisIncentives "github.com/osmosis-labs/osmosis/v21/x/incentives"
+	osmosisLockup "github.com/osmosis-labs/osmosis/v21/x/lockup"
+	osmosisMint "github.com/osmosis-labs/osmosis/v21/x/mint"
+	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v21/x/pool-incentives"
+	osmosisPoolManager "github.com/osmosis-labs/osmosis/v21/x/poolmanager/module"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v21/x/protorev"
+	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v21/x/superfluid"
+	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v21/x/tokenfactory"
+	osmosisTxFees "github.com/osmosis-labs/osmosis/v21/x/txfees"
+	osmosisValsetPref "github.com/osmosis-labs/osmosis/v21/x/valset-pref/valpref-module"
 	osmosisEpochs "github.com/osmosis-labs/osmosis/x/epochs"
 )
 
@@ -48,9 +52,10 @@ var (
 		capability.AppModuleBasic{},
 		// TODO: add osmosis governance proposal types here
 		// TODO: add other proposal types here
-		gov.NewAppModuleBasic(
-			paramsclient.ProposalHandler, distrclient.ProposalHandler, upgradeclient.ProposalHandler, upgradeclient.CancelProposalHandler,
-		),
+		gov.AppModuleBasic{},
+		// gov.NewAppModuleBasic(
+		// paramsclient.ProposalHandler, distrclient.ProposalHandler, upgradeclient.ProposalHandler, upgradeclient.CancelProposalHandler,
+		// ),
 		crisis.AppModuleBasic{},
 		distribution.AppModuleBasic{},
 		feegrant.AppModuleBasic{},
@@ -61,6 +66,7 @@ var (
 		upgrade.AppModuleBasic{},
 		transfer.AppModuleBasic{},
 		ibc.AppModuleBasic{},
+		ibcClient.AppModuleBasic{},
 		wasm.AppModuleBasic{},
 		osmosisGamm.AppModuleBasic{},
 		osmosisEpochs.AppModuleBasic{},

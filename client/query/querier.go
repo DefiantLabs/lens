@@ -2,13 +2,13 @@ package query
 
 import (
 	"github.com/DefiantLabs/lens/client"
-	epochsTypes "github.com/DefiantLabs/lens/osmosis/x/epochs/types"
-	protorevTypes "github.com/DefiantLabs/lens/osmosis/x/protorev/types"
+	coretypes "github.com/cometbft/cometbft/rpc/core/types"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributionTypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	stakingTypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	coretypes "github.com/tendermint/tendermint/rpc/core/types"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v21/x/protorev/types"
+	osmosisEpochs "github.com/osmosis-labs/osmosis/x/epochs/types"
 )
 
 type Query struct {
@@ -109,7 +109,7 @@ func (q *Query) ABCIQuery(path string, data string, prove bool) (*coretypes.Resu
 	return ABCIQueryRPC(q, path, data, prove)
 }
 
-func (q *Query) EpochsAtHeight(height int64) (*epochsTypes.QueryEpochsInfoResponse, error) {
+func (q *Query) EpochsAtHeight(height int64) (*osmosisEpochs.QueryEpochsInfoResponse, error) {
 	/// TODO: In the future have some logic to route the query to the appropriate client (gRPC or RPC)
 	resp, err := EpochsAtHeightRPC(q, height)
 	return resp, err
@@ -119,7 +119,7 @@ func (q *Query) BlockSearchEpochStartsLessThanHeight(height int64) (*coretypes.R
 	return BlockSearchEpochStartsLessThanHeightRPC(q, height, 1, 100)
 }
 
-func (q *Query) ProtorevDeveloperAccount() (*protorevTypes.QueryGetProtoRevDeveloperAccountResponse, error) {
+func (q *Query) ProtorevDeveloperAccount() (*osmosisProtorev.QueryGetProtoRevDeveloperAccountResponse, error) {
 	/// TODO: In the future have some logic to route the query to the appropriate client (gRPC or RPC)
 	resp, err := ProtorevDeveloperAccountRPC(q)
 	return resp, err

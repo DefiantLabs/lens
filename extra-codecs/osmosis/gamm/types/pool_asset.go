@@ -7,15 +7,16 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	mainGamm "github.com/osmosis-labs/osmosis/v21/x/gamm/types"
 )
 
 func ValidateUserSpecifiedWeight(weight sdk.Int) error {
 	if !weight.IsPositive() {
-		return sdkerrors.Wrap(ErrNotPositiveWeight, weight.String())
+		return sdkerrors.Wrap(mainGamm.ErrNotPositiveWeight, weight.String())
 	}
 
 	if weight.GTE(MaxUserSpecifiedWeight) {
-		return sdkerrors.Wrap(ErrWeightTooLarge, weight.String())
+		return sdkerrors.Wrap(mainGamm.ErrWeightTooLarge, weight.String())
 	}
 	return nil
 }
@@ -23,12 +24,12 @@ func ValidateUserSpecifiedWeight(weight sdk.Int) error {
 func ValidateUserSpecifiedPoolAssets(assets []PoolAsset) error {
 	// The pool must be swapping between at least two assets
 	if len(assets) < 2 {
-		return ErrTooFewPoolAssets
+		return mainGamm.ErrTooFewPoolAssets
 	}
 
 	// TODO: Add the limit of binding token to the pool params?
 	if len(assets) > 8 {
-		return sdkerrors.Wrapf(ErrTooManyPoolAssets, "%d", len(assets))
+		return sdkerrors.Wrapf(mainGamm.ErrTooManyPoolAssets, "%d", len(assets))
 	}
 
 	for _, asset := range assets {

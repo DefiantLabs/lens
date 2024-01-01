@@ -9,6 +9,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	proto "github.com/gogo/protobuf/proto"
+	mainGamm "github.com/osmosis-labs/osmosis/v21/x/gamm/types"
 )
 
 // PoolI defines an interface for pools that hold tokens.
@@ -48,26 +49,18 @@ var (
 
 func (params PoolParams) Validate(poolWeights []PoolAsset) error {
 	if params.ExitFee.IsNegative() {
-		return ErrNegativeExitFee
+		return mainGamm.ErrNegativeExitFee
 	}
 
 	if params.ExitFee.GTE(sdk.OneDec()) {
-		return ErrTooMuchExitFee
-	}
-
-	if params.SwapFee.IsNegative() {
-		return ErrNegativeSwapFee
-	}
-
-	if params.SwapFee.GTE(sdk.OneDec()) {
-		return ErrTooMuchSwapFee
+		return mainGamm.ErrTooMuchExitFee
 	}
 
 	if params.SmoothWeightChangeParams != nil {
 		targetWeights := params.SmoothWeightChangeParams.TargetPoolWeights
 		// Ensure it has the right number of weights
 		if len(targetWeights) != len(poolWeights) {
-			return ErrPoolParamsInvalidNumDenoms
+			return mainGamm.ErrPoolParamsInvalidNumDenoms
 		}
 		// Validate all user specified weights
 		for _, v := range targetWeights {
@@ -81,7 +74,7 @@ func (params PoolParams) Validate(poolWeights []PoolAsset) error {
 		sortedPoolWeights := SortPoolAssetsOutOfPlaceByDenom(poolWeights)
 		for i, v := range sortedPoolWeights {
 			if sortedTargetPoolWeights[i].Token.Denom != v.Token.Denom {
-				return ErrPoolParamsInvalidDenom
+				return mainGamm.ErrPoolParamsInvalidDenom
 			}
 		}
 

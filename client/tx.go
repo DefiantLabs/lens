@@ -2,20 +2,19 @@ package client
 
 import (
 	"context"
-	"fmt"
-	"github.com/avast/retry-go"
 	"strings"
 
+	"github.com/avast/retry-go"
+
+	abci "github.com/cometbft/cometbft/abci/types"
+	rpcclient "github.com/cometbft/cometbft/rpc/client"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
 	"github.com/cosmos/cosmos-sdk/store/rootmulti"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	txtypes "github.com/cosmos/cosmos-sdk/types/tx"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
-	abci "github.com/tendermint/tendermint/abci/types"
-	rpcclient "github.com/tendermint/tendermint/rpc/client"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -52,61 +51,61 @@ func (cc *ChainClient) SendMsg(ctx context.Context, msg sdk.Msg) (*sdk.TxRespons
 // of that transaction will be logged. A boolean indicating if a transaction was successfully
 // sent and executed successfully is returned.
 func (cc *ChainClient) SendMsgs(ctx context.Context, msgs []sdk.Msg) (*sdk.TxResponse, error) {
-	txf, err := cc.PrepareFactory(cc.TxFactory())
-	if err != nil {
-		return nil, err
-	}
+	// txf, err := cc.PrepareFactory(cc.TxFactory())
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	// TODO: Make this work with new CalculateGas method
-	// TODO: This is related to GRPC client stuff?
-	// https://github.com/cosmos/cosmos-sdk/blob/5725659684fc93790a63981c653feee33ecf3225/client/tx/tx.go#L297
-	_, adjusted, err := cc.CalculateGas(txf, msgs...)
-	if err != nil {
-		return nil, err
-	}
+	// // TODO: Make this work with new CalculateGas method
+	// // TODO: This is related to GRPC client stuff?
+	// // https://github.com/cosmos/cosmos-sdk/blob/5725659684fc93790a63981c653feee33ecf3225/client/tx/tx.go#L297
+	// _, adjusted, err := cc.CalculateGas(txf, msgs...)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	// Set the gas amount on the transaction factory
-	txf = txf.WithGas(adjusted)
+	// // Set the gas amount on the transaction factory
+	// txf = txf.WithGas(adjusted)
 
-	// Build the transaction builder
-	txb, err := tx.BuildUnsignedTx(txf, msgs...)
-	if err != nil {
-		return nil, err
-	}
+	// // Build the transaction builder
+	// txb, err := tx.BuildUnsignedTx(txf, msgs...)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	// Attach the signature to the transaction
-	// c.LogFailedTx(nil, err, msgs)
-	// Force encoding in the chain specific address
-	for _, msg := range msgs {
-		cc.Codec.Marshaler.MustMarshalJSON(msg)
-	}
+	// // Attach the signature to the transaction
+	// // c.LogFailedTx(nil, err, msgs)
+	// // Force encoding in the chain specific address
+	// for _, msg := range msgs {
+	// 	cc.Codec.Marshaler.MustMarshalJSON(msg)
+	// }
 
-	done := cc.SetSDKContext()
-	if err = tx.Sign(txf, cc.Config.Key, txb, false); err != nil {
-		return nil, err
-	}
-	done()
+	// done := cc.SetSDKContext()
+	// if err = tx.Sign(txf, cc.Config.Key, txb, false); err != nil {
+	// 	return nil, err
+	// }
+	// done()
 
-	// Generate the transaction bytes
-	txBytes, err := cc.Codec.TxConfig.TxEncoder()(txb.GetTx())
-	if err != nil {
-		return nil, err
-	}
+	// // Generate the transaction bytes
+	// txBytes, err := cc.Codec.TxConfig.TxEncoder()(txb.GetTx())
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	// Broadcast those bytes
-	res, err := cc.BroadcastTx(ctx, txBytes)
-	if err != nil {
-		return nil, err
-	}
+	// // Broadcast those bytes
+	// res, err := cc.BroadcastTx(ctx, txBytes)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	// transaction was executed, log the success or failure using the tx response code
-	// NOTE: error is nil, logic should use the returned error to determine if the
-	// transaction was successfully executed.
-	if res.Code != 0 {
-		return res, fmt.Errorf("transaction failed with code: %d", res.Code)
-	}
+	// // transaction was executed, log the success or failure using the tx response code
+	// // NOTE: error is nil, logic should use the returned error to determine if the
+	// // transaction was successfully executed.
+	// if res.Code != 0 {
+	// 	return res, fmt.Errorf("transaction failed with code: %d", res.Code)
+	// }
 
-	return res, nil
+	return nil, nil
 }
 
 func (cc *ChainClient) PrepareFactory(txf tx.Factory) (tx.Factory, error) {
@@ -277,29 +276,30 @@ type protoTxProvider interface {
 // BuildSimTx creates an unsigned tx with an empty single signature and returns
 // the encoded transaction or an error if the unsigned transaction cannot be built.
 func BuildSimTx(txf tx.Factory, msgs ...sdk.Msg) ([]byte, error) {
-	txb, err := tx.BuildUnsignedTx(txf, msgs...)
-	if err != nil {
-		return nil, err
-	}
+	// txb, err := tx.BuildUnsignedTx(txf, msgs...)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	// Create an empty signature literal as the ante handler will populate with a
-	// sentinel pubkey.
-	sig := signing.SignatureV2{
-		PubKey: &secp256k1.PubKey{},
-		Data: &signing.SingleSignatureData{
-			SignMode: txf.SignMode(),
-		},
-		Sequence: txf.Sequence(),
-	}
-	if err := txb.SetSignatures(sig); err != nil {
-		return nil, err
-	}
+	// // Create an empty signature literal as the ante handler will populate with a
+	// // sentinel pubkey.
+	// sig := signing.SignatureV2{
+	// 	PubKey: &secp256k1.PubKey{},
+	// 	Data: &signing.SingleSignatureData{
+	// 		SignMode: txf.SignMode(),
+	// 	},
+	// 	Sequence: txf.Sequence(),
+	// }
+	// if err := txb.SetSignatures(sig); err != nil {
+	// 	return nil, err
+	// }
 
-	protoProvider, ok := txb.(protoTxProvider)
-	if !ok {
-		return nil, fmt.Errorf("cannot simulate amino tx")
-	}
+	// protoProvider, ok := txb.(protoTxProvider)
+	// if !ok {
+	// 	return nil, fmt.Errorf("cannot simulate amino tx")
+	// }
 
-	simReq := txtypes.SimulateRequest{Tx: protoProvider.GetProtoTx()}
-	return simReq.Marshal()
+	// simReq := txtypes.SimulateRequest{Tx: protoProvider.GetProtoTx()}
+	// return simReq.Marshal()
+	return nil, nil
 }

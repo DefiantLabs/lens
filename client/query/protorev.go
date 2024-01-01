@@ -1,12 +1,12 @@
 package query
 
 import (
-	protorevTypes "github.com/DefiantLabs/lens/osmosis/x/protorev/types"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v21/x/protorev/types"
 )
 
-func ProtorevDeveloperAccountRPC(q *Query) (*protorevTypes.QueryGetProtoRevDeveloperAccountResponse, error) {
-	req := protorevTypes.QueryGetProtoRevDeveloperAccountRequest{}
-	queryClient := protorevTypes.NewQueryClient(q.Client)
+func ProtorevDeveloperAccountRPC(q *Query) (*osmosisProtorev.QueryGetProtoRevDeveloperAccountResponse, error) {
+	req := osmosisProtorev.QueryGetProtoRevDeveloperAccountRequest{}
+	queryClient := osmosisProtorev.NewQueryClient(q.Client)
 	ctx, cancel := q.GetQueryContext()
 	defer cancel()
 	res, err := queryClient.GetProtoRevDeveloperAccount(ctx, &req)

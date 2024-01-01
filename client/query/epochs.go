@@ -3,13 +3,14 @@ package query
 import (
 	"fmt"
 
-	epochsTypes "github.com/DefiantLabs/lens/osmosis/x/epochs/types"
-	coretypes "github.com/tendermint/tendermint/rpc/core/types"
+	osmosisEpochs "github.com/osmosis-labs/osmosis/x/epochs/types"
+
+	coretypes "github.com/cometbft/cometbft/rpc/core/types"
 )
 
-func EpochsAtHeightRPC(q *Query, height int64) (*epochsTypes.QueryEpochsInfoResponse, error) {
-	req := epochsTypes.QueryEpochsInfoRequest{}
-	queryClient := epochsTypes.NewQueryClient(q.Client)
+func EpochsAtHeightRPC(q *Query, height int64) (*osmosisEpochs.QueryEpochsInfoResponse, error) {
+	req := osmosisEpochs.QueryEpochsInfoRequest{}
+	queryClient := osmosisEpochs.NewQueryClient(q.Client)
 
 	if height > 0 {
 		q.Options.Height = height
