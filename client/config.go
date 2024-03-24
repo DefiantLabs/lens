@@ -25,6 +25,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/upgrade"
 
 	// upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
+	ibcInterchainAccounts "github.com/cosmos/ibc-go/v7/modules/apps/27-interchain-accounts"
 	"github.com/cosmos/ibc-go/v7/modules/apps/transfer"
 	ibc "github.com/cosmos/ibc-go/v7/modules/core"
 	ibcClient "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
@@ -67,6 +68,7 @@ var (
 		transfer.AppModuleBasic{},
 		ibc.AppModuleBasic{},
 		ibcClient.AppModuleBasic{},
+		ibcInterchainAccounts.AppModuleBasic{},
 		wasm.AppModuleBasic{},
 		osmosisGamm.AppModuleBasic{},
 		osmosisEpochs.AppModuleBasic{},
