@@ -1,7 +1,7 @@
 package query
 
 import (
-	osmosisProtorev "github.com/osmosis-labs/osmosis/v21/x/protorev/types"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v25/x/protorev/types"
 )
 
 func ProtorevDeveloperAccountRPC(q *Query) (*osmosisProtorev.QueryGetProtoRevDeveloperAccountResponse, error) {

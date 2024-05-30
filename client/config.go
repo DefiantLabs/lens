@@ -29,20 +29,21 @@ import (
 	"github.com/cosmos/ibc-go/v7/modules/apps/transfer"
 	ibc "github.com/cosmos/ibc-go/v7/modules/core"
 	ibcClient "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
-	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v21/x/concentrated-liquidity/clmodule"
-	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v21/x/cosmwasmpool/module"
-	osmosisGamm "github.com/osmosis-labs/osmosis/v21/x/gamm"
-	osmosisIncentives "github.com/osmosis-labs/osmosis/v21/x/incentives"
-	osmosisLockup "github.com/osmosis-labs/osmosis/v21/x/lockup"
-	osmosisMint "github.com/osmosis-labs/osmosis/v21/x/mint"
-	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v21/x/pool-incentives"
-	osmosisPoolManager "github.com/osmosis-labs/osmosis/v21/x/poolmanager/module"
-	osmosisProtorev "github.com/osmosis-labs/osmosis/v21/x/protorev"
-	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v21/x/superfluid"
-	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v21/x/tokenfactory"
-	osmosisTxFees "github.com/osmosis-labs/osmosis/v21/x/txfees"
-	osmosisValsetPref "github.com/osmosis-labs/osmosis/v21/x/valset-pref/valpref-module"
+	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v25/x/concentrated-liquidity/clmodule"
+	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v25/x/cosmwasmpool/module"
+	osmosisGamm "github.com/osmosis-labs/osmosis/v25/x/gamm"
+	osmosisIncentives "github.com/osmosis-labs/osmosis/v25/x/incentives"
+	osmosisLockup "github.com/osmosis-labs/osmosis/v25/x/lockup"
+	osmosisMint "github.com/osmosis-labs/osmosis/v25/x/mint"
+	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v25/x/pool-incentives"
+	osmosisPoolManager "github.com/osmosis-labs/osmosis/v25/x/poolmanager/module"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v25/x/protorev"
+	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v25/x/superfluid"
+	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v25/x/tokenfactory"
+	osmosisTxFees "github.com/osmosis-labs/osmosis/v25/x/txfees"
+	osmosisValsetPref "github.com/osmosis-labs/osmosis/v25/x/valset-pref/valpref-module"
 	osmosisEpochs "github.com/osmosis-labs/osmosis/x/epochs"
+	skipAuction "github.com/skip-mev/block-sdk/x/auction"
 )
 
 var (
@@ -85,6 +86,7 @@ var (
 		vesting.AppModuleBasic{},
 		osmosisValsetPref.AppModuleBasic{},
 		osmosisCosmWasmPool.AppModuleBasic{},
+		skipAuction.AppModuleBasic{},
 	}
 )
 

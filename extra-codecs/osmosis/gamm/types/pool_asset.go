@@ -7,7 +7,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	mainGamm "github.com/osmosis-labs/osmosis/v21/x/gamm/types"
+	mainGamm "github.com/osmosis-labs/osmosis/v25/x/gamm/types"
 )
 
 func ValidateUserSpecifiedWeight(weight sdk.Int) error {

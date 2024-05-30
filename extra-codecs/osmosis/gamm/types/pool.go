@@ -9,7 +9,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	proto "github.com/gogo/protobuf/proto"
-	mainGamm "github.com/osmosis-labs/osmosis/v21/x/gamm/types"
+	mainGamm "github.com/osmosis-labs/osmosis/v25/x/gamm/types"
 )
 
 // PoolI defines an interface for pools that hold tokens.
