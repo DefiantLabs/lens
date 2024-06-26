@@ -29,6 +29,7 @@ import (
 	"github.com/cosmos/ibc-go/v7/modules/apps/transfer"
 	ibc "github.com/cosmos/ibc-go/v7/modules/core"
 	ibcClient "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
+	osmosisApp "github.com/osmosis-labs/osmosis/v25/app/keepers"
 	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v25/x/concentrated-liquidity/clmodule"
 	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v25/x/cosmwasmpool/module"
 	osmosisGamm "github.com/osmosis-labs/osmosis/v25/x/gamm"
@@ -38,6 +39,7 @@ import (
 	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v25/x/pool-incentives"
 	osmosisPoolManager "github.com/osmosis-labs/osmosis/v25/x/poolmanager/module"
 	osmosisProtorev "github.com/osmosis-labs/osmosis/v25/x/protorev"
+	osmosisSmartAccount "github.com/osmosis-labs/osmosis/v25/x/smart-account"
 	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v25/x/superfluid"
 	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v25/x/tokenfactory"
 	osmosisTxFees "github.com/osmosis-labs/osmosis/v25/x/txfees"
@@ -47,7 +49,8 @@ import (
 )
 
 var (
-	ModuleBasics = []module.AppModuleBasic{
+	OsmosisModuleBasics = osmosisApp.AppModuleBasics
+	ModuleBasics        = []module.AppModuleBasic{
 		auth.AppModuleBasic{},
 		authz.AppModuleBasic{},
 		bank.AppModuleBasic{},
@@ -87,6 +90,7 @@ var (
 		osmosisValsetPref.AppModuleBasic{},
 		osmosisCosmWasmPool.AppModuleBasic{},
 		skipAuction.AppModuleBasic{},
+		osmosisSmartAccount.AppModuleBasic{},
 	}
 )
 
