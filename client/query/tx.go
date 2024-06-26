@@ -13,7 +13,7 @@ import (
 //
 // RPC endpoint is defined in cosmos-sdk: proto/cosmos/tx/v1beta1/service.proto,
 // See GetTxsEvent(GetTxsEventRequest) returns (GetTxsEventResponse)
-func TxsAtHeightRPC(q *Query, height int64, codec client.Codec) (*txTypes.GetTxsEventResponse, error) {
+func TxsAtHeightRPC(q *Query, height int64, codec client.Codec) (*txTypes.GetTxsEventResponse, error, error) {
 	if q.Options.Pagination == nil {
 		pagination := &query.PageRequest{Limit: 100}
 		q.Options.Pagination = pagination
@@ -29,19 +29,31 @@ func TxsAtHeightRPC(q *Query, height int64, codec client.Codec) (*txTypes.GetTxs
 //
 // RPC endpoint is defined in cosmos-sdk: proto/cosmos/tx/v1beta1/service.proto,
 // See GetTxsEvent(GetTxsEventRequest) returns (GetTxsEventResponse)
-func TxsRPC(q *Query, req *txTypes.GetTxsEventRequest, codec client.Codec) (*txTypes.GetTxsEventResponse, error) {
+// This function returns 2 errors, one for query erroring which are usually fatal, the other for unpacking errors
+// which can sometimes be skipped based on which TX message was not successfully unpacked
+func TxsRPC(q *Query, req *txTypes.GetTxsEventRequest, codec client.Codec) (*txTypes.GetTxsEventResponse, error, error) {
 	queryClient := txTypes.NewServiceClient(q.Client)
 	ctx, cancel := q.GetQueryContext()
 	defer cancel()
 
 	res, err := queryClient.GetTxsEvent(ctx, req)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
+	unpackError := &TXUnpackError{}
+	unpackError.Errors = []string{}
 	for _, tx := range res.GetTxs() {
-		tx.UnpackInterfaces(codec.InterfaceRegistry)
+		err := tx.UnpackInterfaces(codec.InterfaceRegistry)
+
+		if err != nil {
+			unpackError.Errors = append(unpackError.Errors, err.Error())
+		}
 	}
 
-	return res, nil
+	if len(unpackError.Errors) != 0 {
+		return res, unpackError, nil
+	}
+
+	return res, nil, nil
 }

@@ -19,8 +19,9 @@ type Query struct {
 //Tx queries
 
 // Tx returns the Tx and all contained messages/TxResponse.
-func (q *Query) TxByHeight(cc client.Codec) (*txTypes.GetTxsEventResponse, error) {
-	return TxsAtHeightRPC(q, q.Options.Height, cc)
+func (q *Query) TxByHeight(cc client.Codec) (resp *txTypes.GetTxsEventResponse, unpackError error, queryError error) {
+	resp, unpackError, queryError = TxsAtHeightRPC(q, q.Options.Height, cc)
+	return
 }
 
 // Bank queries
