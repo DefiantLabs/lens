@@ -1,6 +1,7 @@
 package query
 
 import (
+	wasmTypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	"github.com/DefiantLabs/lens/client"
 	coretypes "github.com/cometbft/cometbft/rpc/core/types"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
@@ -124,4 +125,8 @@ func (q *Query) ProtorevDeveloperAccount() (*osmosisProtorev.QueryGetProtoRevDev
 	/// TODO: In the future have some logic to route the query to the appropriate client (gRPC or RPC)
 	resp, err := ProtorevDeveloperAccountRPC(q)
 	return resp, err
+}
+
+func (q *Query) ContractsByCodeIDAtHeight(codeID uint64, height int64) (*wasmTypes.QueryContractsByCodeResponse, error) {
+	return ContractsByCodeIDAtHeight(q, codeID, height)
 }
