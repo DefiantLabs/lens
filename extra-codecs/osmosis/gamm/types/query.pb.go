@@ -21,6 +21,7 @@ import (
 	io "io"
 	math "math"
 	math_bits "math/bits"
+	sdkMath "cosmossdk.io/math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -754,7 +755,7 @@ func (m *QuerySwapExactAmountInRequest) GetRoutes() []SwapAmountInRoute {
 }
 
 type QuerySwapExactAmountInResponse struct {
-	TokenOutAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,1,opt,name=tokenOutAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenOutAmount" yaml:"token_out_amount"`
+	TokenOutAmount sdkMath.Int `protobuf:"bytes,1,opt,name=tokenOutAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenOutAmount" yaml:"token_out_amount"`
 }
 
 func (m *QuerySwapExactAmountInResponse) Reset()         { *m = QuerySwapExactAmountInResponse{} }
@@ -860,7 +861,7 @@ func (m *QuerySwapExactAmountOutRequest) GetTokenOut() string {
 }
 
 type QuerySwapExactAmountOutResponse struct {
-	TokenInAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,1,opt,name=tokenInAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenInAmount" yaml:"token_in_amount"`
+	TokenInAmount sdkMath.Int `protobuf:"bytes,1,opt,name=tokenInAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenInAmount" yaml:"token_in_amount"`
 }
 
 func (m *QuerySwapExactAmountOutResponse) Reset()         { *m = QuerySwapExactAmountOutResponse{} }

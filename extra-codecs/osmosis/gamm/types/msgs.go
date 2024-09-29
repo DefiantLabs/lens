@@ -38,14 +38,14 @@ func ValidateFutureGovernor(governor string) error {
 	lockTimeStr := ""
 	splits := strings.Split(governor, ",")
 	if len(splits) > 2 {
-		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, fmt.Sprintf("invalid future governor: %s", governor))
+		return sdkerrors.ErrInvalidAddress.Wrap(fmt.Sprintf("invalid future governor: %s", governor))
 	}
 
 	// token,100h
 	if len(splits) == 2 {
 		lpTokenStr := splits[0]
 		if sdk.ValidateDenom(lpTokenStr) != nil {
-			return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, fmt.Sprintf("invalid future governor: %s", governor))
+			return sdkerrors.ErrInvalidAddress.Wrap(fmt.Sprintf("invalid future governor: %s", governor))
 		}
 		lockTimeStr = splits[1]
 	}
@@ -58,7 +58,7 @@ func ValidateFutureGovernor(governor string) error {
 	// Note that a duration of 0 is allowed
 	_, err = time.ParseDuration(lockTimeStr)
 	if err != nil {
-		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, fmt.Sprintf("invalid future governor: %s", governor))
+		return sdkerrors.ErrInvalidAddress.Wrap(fmt.Sprintf("invalid future governor: %s", governor))
 	}
 	return nil
 }
@@ -71,7 +71,7 @@ func (msg MsgCreatePool) ValidateBasic() error {
 
 	_, err := sdk.AccAddressFromBech32(msg.Sender)
 	if err != nil {
-		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid sender address (%s)", err)
+		return sdkerrors.ErrInvalidAddress.Wrapf("Invalid sender address (%s)", err)
 	}
 
 	err = ValidateUserSpecifiedPoolAssets(msg.PoolAssets)

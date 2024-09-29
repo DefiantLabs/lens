@@ -5,7 +5,6 @@ package types
 
 import (
 	fmt "fmt"
-	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
 	types "github.com/cosmos/cosmos-sdk/types"
 	_ "github.com/cosmos/cosmos-sdk/x/auth/types"
 	_ "github.com/gogo/protobuf/gogoproto"
@@ -18,6 +17,7 @@ import (
 	math "math"
 	math_bits "math/bits"
 	time "time"
+	sdkMath "cosmossdk.io/math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -37,7 +37,7 @@ type PoolAsset struct {
 	// the denomination must be unique amongst all PoolAssets for this pool.
 	Token types.Coin `protobuf:"bytes,1,opt,name=token,proto3" json:"token" yaml:"token"`
 	// Weight that is not normalized. This weight must be less than 2^50
-	Weight github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,2,opt,name=weight,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"weight" yaml:"weight"`
+	Weight sdkMath.Int `protobuf:"bytes,2,opt,name=weight,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"weight" yaml:"weight"`
 }
 
 func (m *PoolAsset) Reset()         { *m = PoolAsset{} }
@@ -177,8 +177,8 @@ func (m *SmoothWeightChangeParams) GetTargetPoolWeights() []PoolAsset {
 // Instead they will be managed by the token holders of the pool.
 // The pool's token holders are specified in future_pool_governor.
 type PoolParams struct {
-	SwapFee github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,1,opt,name=swapFee,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"swapFee" yaml:"swap_fee"`
-	ExitFee github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=exitFee,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"exitFee" yaml:"exit_fee"`
+	SwapFee sdkMath.LegacyDec `protobuf:"bytes,1,opt,name=swapFee,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"swapFee" yaml:"swap_fee"`
+	ExitFee sdkMath.LegacyDec `protobuf:"bytes,2,opt,name=exitFee,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"exitFee" yaml:"exit_fee"`
 	//
 	SmoothWeightChangeParams *SmoothWeightChangeParams `protobuf:"bytes,3,opt,name=smoothWeightChangeParams,proto3" json:"smoothWeightChangeParams,omitempty" yaml:"smooth_weight_change_params"`
 }
@@ -244,7 +244,7 @@ type Pool struct {
 	// They contain the pool asset and the information about the weight
 	PoolAssets []PoolAsset `protobuf:"bytes,6,rep,name=poolAssets,proto3" json:"poolAssets" yaml:"pool_assets"`
 	// sum of all non-normalized pool weights
-	TotalWeight github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,7,opt,name=totalWeight,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"totalWeight" yaml:"total_weight"`
+	TotalWeight sdkMath.Int `protobuf:"bytes,7,opt,name=totalWeight,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"totalWeight" yaml:"total_weight"`
 }
 
 func (m *Pool) Reset()      { *m = Pool{} }

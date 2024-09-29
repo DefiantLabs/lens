@@ -1,14 +1,17 @@
 package types
 
-import sdk "github.com/cosmos/cosmos-sdk/types"
+import (
+	sdkMath "cosmossdk.io/math"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+)
 
 type GammHooks interface {
 	// AfterPoolCreated is called after CreatePool
 	AfterPoolCreated(ctx sdk.Context, sender sdk.AccAddress, poolId uint64)
 	// AfterJoinPool is called after JoinPool, JoinSwapExternAmountIn, and JoinSwapShareAmountOut
-	AfterJoinPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, enterCoins sdk.Coins, shareOutAmount sdk.Int)
+	AfterJoinPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, enterCoins sdk.Coins, shareOutAmount sdkMath.Int)
 	// AfterExitPool is called after ExitPool, ExitSwapShareAmountIn, and ExitSwapExternAmountOut
-	AfterExitPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, shareInAmount sdk.Int, exitCoins sdk.Coins)
+	AfterExitPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, shareInAmount sdkMath.Int, exitCoins sdk.Coins)
 	// AfterSwap is called after SwapExactAmountIn and SwapExactAmountOut
 	AfterSwap(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, input sdk.Coins, output sdk.Coins)
 }
@@ -29,13 +32,13 @@ func (h MultiGammHooks) AfterPoolCreated(ctx sdk.Context, sender sdk.AccAddress,
 	}
 }
 
-func (h MultiGammHooks) AfterJoinPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, enterCoins sdk.Coins, shareOutAmount sdk.Int) {
+func (h MultiGammHooks) AfterJoinPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, enterCoins sdk.Coins, shareOutAmount sdkMath.Int) {
 	for i := range h {
 		h[i].AfterJoinPool(ctx, sender, poolId, enterCoins, shareOutAmount)
 	}
 }
 
-func (h MultiGammHooks) AfterExitPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, shareInAmount sdk.Int, exitCoins sdk.Coins) {
+func (h MultiGammHooks) AfterExitPool(ctx sdk.Context, sender sdk.AccAddress, poolId uint64, shareInAmount sdkMath.Int, exitCoins sdk.Coins) {
 	for i := range h {
 		h[i].AfterExitPool(ctx, sender, poolId, shareInAmount, exitCoins)
 	}

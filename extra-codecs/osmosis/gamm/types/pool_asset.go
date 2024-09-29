@@ -5,18 +5,19 @@ import (
 	"sort"
 	"strings"
 
+	sdkMath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	mainGamm "github.com/osmosis-labs/osmosis/v25/x/gamm/types"
+	mainGamm "github.com/osmosis-labs/osmosis/v26/x/gamm/types"
 )
 
-func ValidateUserSpecifiedWeight(weight sdk.Int) error {
+func ValidateUserSpecifiedWeight(weight sdkMath.Int) error {
 	if !weight.IsPositive() {
-		return sdkerrors.Wrap(mainGamm.ErrNotPositiveWeight, weight.String())
+		return mainGamm.ErrNotPositiveWeight.Wrap(weight.String())
 	}
 
 	if weight.GTE(MaxUserSpecifiedWeight) {
-		return sdkerrors.Wrap(mainGamm.ErrWeightTooLarge, weight.String())
+		return mainGamm.ErrWeightTooLarge.Wrap(weight.String())
 	}
 	return nil
 }
@@ -29,7 +30,7 @@ func ValidateUserSpecifiedPoolAssets(assets []PoolAsset) error {
 
 	// TODO: Add the limit of binding token to the pool params?
 	if len(assets) > 8 {
-		return sdkerrors.Wrapf(mainGamm.ErrTooManyPoolAssets, "%d", len(assets))
+		return mainGamm.ErrTooManyPoolAssets.Wrapf("%d", len(assets))
 	}
 
 	for _, asset := range assets {
@@ -39,7 +40,7 @@ func ValidateUserSpecifiedPoolAssets(assets []PoolAsset) error {
 		}
 
 		if !asset.Token.IsValid() || !asset.Token.IsPositive() {
-			return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, asset.Token.String())
+			return sdkerrors.ErrInvalidCoins.Wrap(asset.Token.String())
 		}
 	}
 	return nil
@@ -67,7 +68,7 @@ func SortPoolAssetsByDenom(assets []PoolAsset) {
 
 // Validates a pool asset, to check if it has a valid weight.
 func (asset PoolAsset) ValidateWeight() error {
-	if asset.Weight.LTE(sdk.ZeroInt()) {
+	if asset.Weight.LTE(sdkMath.ZeroInt()) {
 		return fmt.Errorf("a token's weight in the pool must be greater than 0")
 	}
 
@@ -124,7 +125,7 @@ func addPoolAssetWeights(base []PoolAsset, other []PoolAsset) []PoolAsset {
 }
 
 // assumes 0 < d < 1
-func poolAssetsMulDec(base []PoolAsset, d sdk.Dec) []PoolAsset {
+func poolAssetsMulDec(base []PoolAsset, d sdkMath.LegacyDec) []PoolAsset {
 	newWeights := make([]PoolAsset, len(base))
 	for i, asset := range base {
 		// TODO: This can adversarially panic at the moment! (as can Pool.TotalWeight)

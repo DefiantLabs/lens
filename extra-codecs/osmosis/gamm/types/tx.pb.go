@@ -6,7 +6,6 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
 	types "github.com/cosmos/cosmos-sdk/types"
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
@@ -17,6 +16,7 @@ import (
 	io "io"
 	math "math"
 	math_bits "math/bits"
+	sdkMath "cosmossdk.io/math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -139,7 +139,7 @@ var xxx_messageInfo_MsgCreatePoolResponse proto.InternalMessageInfo
 type MsgJoinPool struct {
 	Sender         string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	PoolId         uint64                                 `protobuf:"varint,2,opt,name=poolId,proto3" json:"poolId,omitempty" yaml:"pool_id"`
-	ShareOutAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,3,opt,name=shareOutAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareOutAmount" yaml:"pool_amount_out"`
+	ShareOutAmount sdkMath.Int `protobuf:"bytes,3,opt,name=shareOutAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareOutAmount" yaml:"pool_amount_out"`
 	TokenInMaxs    []types.Coin                           `protobuf:"bytes,4,rep,name=tokenInMaxs,proto3" json:"tokenInMaxs" yaml:"token_in_max_amounts"`
 }
 
@@ -237,7 +237,7 @@ var xxx_messageInfo_MsgJoinPoolResponse proto.InternalMessageInfo
 type MsgExitPool struct {
 	Sender        string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	PoolId        uint64                                 `protobuf:"varint,2,opt,name=poolId,proto3" json:"poolId,omitempty" yaml:"pool_id"`
-	ShareInAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,3,opt,name=shareInAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareInAmount" yaml:"share_in_amount"`
+	ShareInAmount sdkMath.Int `protobuf:"bytes,3,opt,name=shareInAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareInAmount" yaml:"share_in_amount"`
 	TokenOutMins  []types.Coin                           `protobuf:"bytes,4,rep,name=tokenOutMins,proto3" json:"tokenOutMins" yaml:"token_out_min_amounts"`
 }
 
@@ -388,7 +388,7 @@ type MsgSwapExactAmountIn struct {
 	Sender            string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	Routes            []SwapAmountInRoute                    `protobuf:"bytes,2,rep,name=routes,proto3" json:"routes"`
 	TokenIn           types.Coin                             `protobuf:"bytes,3,opt,name=tokenIn,proto3" json:"tokenIn" yaml:"token_in"`
-	TokenOutMinAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,4,opt,name=tokenOutMinAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenOutMinAmount" yaml:"token_out_min_amount"`
+	TokenOutMinAmount sdkMath.Int `protobuf:"bytes,4,opt,name=tokenOutMinAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenOutMinAmount" yaml:"token_out_min_amount"`
 }
 
 func (m *MsgSwapExactAmountIn) Reset()         { *m = MsgSwapExactAmountIn{} }
@@ -537,7 +537,7 @@ func (m *SwapAmountOutRoute) GetTokenInDenom() string {
 type MsgSwapExactAmountOut struct {
 	Sender           string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	Routes           []SwapAmountOutRoute                   `protobuf:"bytes,2,rep,name=routes,proto3" json:"routes"`
-	TokenInMaxAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,3,opt,name=tokenInMaxAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenInMaxAmount" yaml:"token_in_max_amount"`
+	TokenInMaxAmount sdkMath.Int `protobuf:"bytes,3,opt,name=tokenInMaxAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenInMaxAmount" yaml:"token_in_max_amount"`
 	TokenOut         types.Coin                             `protobuf:"bytes,4,opt,name=tokenOut,proto3" json:"tokenOut" yaml:"token_out"`
 }
 
@@ -636,7 +636,7 @@ type MsgJoinSwapExternAmountIn struct {
 	Sender            string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	PoolId            uint64                                 `protobuf:"varint,2,opt,name=poolId,proto3" json:"poolId,omitempty" yaml:"pool_id"`
 	TokenIn           types.Coin                             `protobuf:"bytes,3,opt,name=tokenIn,proto3" json:"tokenIn" yaml:"token_in"`
-	ShareOutMinAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,4,opt,name=shareOutMinAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareOutMinAmount" yaml:"share_out_min_amount"`
+	ShareOutMinAmount sdkMath.Int `protobuf:"bytes,4,opt,name=shareOutMinAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareOutMinAmount" yaml:"share_out_min_amount"`
 }
 
 func (m *MsgJoinSwapExternAmountIn) Reset()         { *m = MsgJoinSwapExternAmountIn{} }
@@ -734,8 +734,8 @@ type MsgJoinSwapShareAmountOut struct {
 	Sender           string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	PoolId           uint64                                 `protobuf:"varint,2,opt,name=poolId,proto3" json:"poolId,omitempty" yaml:"pool_id"`
 	TokenInDenom     string                                 `protobuf:"bytes,3,opt,name=tokenInDenom,proto3" json:"tokenInDenom,omitempty" yaml:"token_in_denom"`
-	ShareOutAmount   github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,4,opt,name=shareOutAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareOutAmount" yaml:"share_out_amount"`
-	TokenInMaxAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,5,opt,name=tokenInMaxAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenInMaxAmount" yaml:"token_in_max_amount"`
+	ShareOutAmount   sdkMath.Int `protobuf:"bytes,4,opt,name=shareOutAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareOutAmount" yaml:"share_out_amount"`
+	TokenInMaxAmount sdkMath.Int `protobuf:"bytes,5,opt,name=tokenInMaxAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenInMaxAmount" yaml:"token_in_max_amount"`
 }
 
 func (m *MsgJoinSwapShareAmountOut) Reset()         { *m = MsgJoinSwapShareAmountOut{} }
@@ -833,8 +833,8 @@ type MsgExitSwapShareAmountIn struct {
 	Sender            string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	PoolId            uint64                                 `protobuf:"varint,2,opt,name=poolId,proto3" json:"poolId,omitempty" yaml:"pool_id"`
 	TokenOutDenom     string                                 `protobuf:"bytes,3,opt,name=tokenOutDenom,proto3" json:"tokenOutDenom,omitempty" yaml:"token_out_denom"`
-	ShareInAmount     github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,4,opt,name=shareInAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareInAmount" yaml:"share_in_amount"`
-	TokenOutMinAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,5,opt,name=tokenOutMinAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenOutMinAmount" yaml:"token_out_min_amount"`
+	ShareInAmount     sdkMath.Int `protobuf:"bytes,4,opt,name=shareInAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareInAmount" yaml:"share_in_amount"`
+	TokenOutMinAmount sdkMath.Int `protobuf:"bytes,5,opt,name=tokenOutMinAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"tokenOutMinAmount" yaml:"token_out_min_amount"`
 }
 
 func (m *MsgExitSwapShareAmountIn) Reset()         { *m = MsgExitSwapShareAmountIn{} }
@@ -932,7 +932,7 @@ type MsgExitSwapExternAmountOut struct {
 	Sender           string                                 `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
 	PoolId           uint64                                 `protobuf:"varint,2,opt,name=poolId,proto3" json:"poolId,omitempty" yaml:"pool_id"`
 	TokenOut         types.Coin                             `protobuf:"bytes,3,opt,name=tokenOut,proto3" json:"tokenOut" yaml:"token_out"`
-	ShareInMaxAmount github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,4,opt,name=shareInMaxAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareInMaxAmount" yaml:"share_in_max_amount"`
+	ShareInMaxAmount sdkMath.Int `protobuf:"bytes,4,opt,name=shareInMaxAmount,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"shareInMaxAmount" yaml:"share_in_max_amount"`
 }
 
 func (m *MsgExitSwapExternAmountOut) Reset()         { *m = MsgExitSwapExternAmountOut{} }

@@ -3,18 +3,19 @@ package types
 import (
 	"encoding/json"
 
+	sdkMath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"gopkg.in/yaml.v2"
 )
 
 type poolAssetPretty struct {
-	Token  sdk.Coin `json:"token" yaml:"token"`
-	Weight sdk.Dec  `json:"weight" yaml:"weight"`
+	Token  sdk.Coin          `json:"token" yaml:"token"`
+	Weight sdkMath.LegacyDec `json:"weight" yaml:"weight"`
 }
 
 func (asset PoolAsset) prettify() poolAssetPretty {
 	return poolAssetPretty{
-		Weight: sdk.NewDecFromInt(asset.Weight).QuoInt64(GuaranteedWeightPrecision),
+		Weight: sdkMath.LegacyNewDecFromInt(asset.Weight).QuoInt64(GuaranteedWeightPrecision),
 		Token:  asset.Token,
 	}
 }
@@ -39,13 +40,13 @@ func (pa PoolAsset) MarshalYAML() (interface{}, error) {
 }
 
 type poolPretty struct {
-	Address            sdk.AccAddress `json:"address" yaml:"address"`
-	Id                 uint64         `json:"id" yaml:"id"`
-	PoolParams         PoolParams     `json:"pool_params" yaml:"pool_params"`
-	FuturePoolGovernor string         `json:"future_pool_governor" yaml:"future_pool_governor"`
-	TotalWeight        sdk.Dec        `json:"total_weight" yaml:"total_weight"`
-	TotalShares        sdk.Coin       `json:"total_shares" yaml:"total_shares"`
-	PoolAssets         []PoolAsset    `json:"pool_assets" yaml:"pool_assets"`
+	Address            sdk.AccAddress    `json:"address" yaml:"address"`
+	Id                 uint64            `json:"id" yaml:"id"`
+	PoolParams         PoolParams        `json:"pool_params" yaml:"pool_params"`
+	FuturePoolGovernor string            `json:"future_pool_governor" yaml:"future_pool_governor"`
+	TotalWeight        sdkMath.LegacyDec `json:"total_weight" yaml:"total_weight"`
+	TotalShares        sdk.Coin          `json:"total_shares" yaml:"total_shares"`
+	PoolAssets         []PoolAsset       `json:"pool_assets" yaml:"pool_assets"`
 }
 
 func (pa Pool) String() string {
@@ -60,7 +61,7 @@ func (pa Pool) MarshalYAML() (interface{}, error) {
 		return nil, err
 	}
 
-	decTotalWeight := sdk.NewDecFromInt(pa.TotalWeight).QuoInt64(GuaranteedWeightPrecision)
+	decTotalWeight := sdkMath.LegacyNewDecFromInt(pa.TotalWeight).QuoInt64(GuaranteedWeightPrecision)
 
 	bz, err := yaml.Marshal(poolPretty{
 		Address:            accAddr,
@@ -86,7 +87,7 @@ func (pa Pool) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 
-	decTotalWeight := sdk.NewDecFromInt(pa.TotalWeight)
+	decTotalWeight := sdkMath.LegacyNewDecFromInt(pa.TotalWeight)
 
 	return json.Marshal(poolPretty{
 		Address:            accAddr,

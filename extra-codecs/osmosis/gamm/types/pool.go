@@ -7,9 +7,10 @@ import (
 	"strings"
 	"time"
 
+	sdkMath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	proto "github.com/gogo/protobuf/proto"
-	mainGamm "github.com/osmosis-labs/osmosis/v25/x/gamm/types"
+	mainGamm "github.com/osmosis-labs/osmosis/v26/x/gamm/types"
 )
 
 // PoolI defines an interface for pools that hold tokens.
@@ -21,10 +22,10 @@ type PoolI interface {
 
 	GetId() uint64
 	GetPoolParams() PoolParams
-	GetTotalWeight() sdk.Int
+	GetTotalWeight() sdkMath.Int
 	GetTotalShares() sdk.Coin
-	AddTotalShares(amt sdk.Int)
-	SubTotalShares(amt sdk.Int)
+	AddTotalShares(amt sdkMath.Int)
+	SubTotalShares(amt sdkMath.Int)
 	GetPoolAsset(denom string) (PoolAsset, error)
 	// UpdatePoolAssetBalance updates the balances for
 	// the token with denomination coin.denom
@@ -35,16 +36,16 @@ type PoolI interface {
 	GetPoolAssets(denoms ...string) ([]PoolAsset, error)
 	GetAllPoolAssets() []PoolAsset
 	PokeTokenWeights(blockTime time.Time)
-	GetTokenWeight(denom string) (sdk.Int, error)
-	GetTokenBalance(denom string) (sdk.Int, error)
+	GetTokenWeight(denom string) (sdkMath.Int, error)
+	GetTokenBalance(denom string) (sdkMath.Int, error)
 	NumAssets() int
 	IsActive(curBlockTime time.Time) bool
 }
 
 var (
-	_                         PoolI   = (*Pool)(nil)
-	MaxUserSpecifiedWeight    sdk.Int = sdk.NewIntFromUint64(1 << 20)
-	GuaranteedWeightPrecision int64   = 1 << 30
+	_                         PoolI       = (*Pool)(nil)
+	MaxUserSpecifiedWeight    sdkMath.Int = sdkMath.NewIntFromUint64(1 << 20)
+	GuaranteedWeightPrecision int64       = 1 << 30
 )
 
 func (params PoolParams) Validate(poolWeights []PoolAsset) error {
@@ -52,7 +53,7 @@ func (params PoolParams) Validate(poolWeights []PoolAsset) error {
 		return mainGamm.ErrNegativeExitFee
 	}
 
-	if params.ExitFee.GTE(sdk.OneDec()) {
+	if params.ExitFee.GTE(sdkMath.LegacyOneDec()) {
 		return mainGamm.ErrTooMuchExitFee
 	}
 
@@ -110,7 +111,7 @@ func (pa Pool) GetPoolParams() PoolParams {
 	return pa.PoolParams
 }
 
-func (pa Pool) GetTotalWeight() sdk.Int {
+func (pa Pool) GetTotalWeight() sdkMath.Int {
 	return pa.TotalWeight
 }
 
@@ -118,11 +119,11 @@ func (pa Pool) GetTotalShares() sdk.Coin {
 	return pa.TotalShares
 }
 
-func (pa *Pool) AddTotalShares(amt sdk.Int) {
+func (pa *Pool) AddTotalShares(amt sdkMath.Int) {
 	pa.TotalShares.Amount = pa.TotalShares.Amount.Add(amt)
 }
 
-func (pa *Pool) SubTotalShares(amt sdk.Int) {
+func (pa *Pool) SubTotalShares(amt sdkMath.Int) {
 	pa.TotalShares.Amount = pa.TotalShares.Amount.Sub(amt)
 }
 
@@ -142,7 +143,7 @@ func (pa *Pool) setInitialPoolAssets(PoolAssets []PoolAsset) error {
 
 	// TODO: Refactor this into PoolAsset.validate()
 	for _, asset := range PoolAssets {
-		if asset.Token.Amount.LTE(sdk.ZeroInt()) {
+		if asset.Token.Amount.LTE(sdkMath.ZeroInt()) {
 			return fmt.Errorf("can't add the zero or negative balance of token")
 		}
 
@@ -182,7 +183,7 @@ func (pa *Pool) setInitialPoolParams(params PoolParams, sortedAssets []PoolAsset
 		for i, v := range sortedAssets {
 			initialWeights[i] = PoolAsset{
 				Weight: v.Weight,
-				Token:  sdk.Coin{Denom: v.Token.Denom, Amount: sdk.ZeroInt()},
+				Token:  sdk.Coin{Denom: v.Token.Denom, Amount: sdkMath.ZeroInt()},
 			}
 		}
 		params.SmoothWeightChangeParams.InitialPoolWeights = initialWeights
@@ -256,7 +257,7 @@ func (pa *Pool) UpdatePoolAssetBalance(coin sdk.Coin) error {
 		return err
 	}
 
-	if coin.Amount.LTE(sdk.ZeroInt()) {
+	if coin.Amount.LTE(sdkMath.ZeroInt()) {
 		return fmt.Errorf("can't set the pool's balance of a token to be zero or negative")
 	}
 
@@ -323,7 +324,7 @@ func (pa *Pool) updateAllWeights(newWeights []PoolAsset) {
 	if len(pa.PoolAssets) != len(newWeights) {
 		panic("updateAllWeights called with invalid input, len(newWeights) != len(existingWeights)")
 	}
-	totalWeight := sdk.ZeroInt()
+	totalWeight := sdkMath.ZeroInt()
 	for i, asset := range pa.PoolAssets {
 		if asset.Token.Denom != newWeights[i].Token.Denom {
 			panic(fmt.Sprintf("updateAllWeights called with invalid input, "+
@@ -378,10 +379,10 @@ func (pa *Pool) PokeTokenWeights(blockTime time.Time) {
 		//       (target_pool_weights - initial_pool_weights) / (duration)
 		// We first compute percent duration elapsed = (t - start_time) / duration, via Unix time.
 		shiftedBlockTime := blockTime.Sub(params.StartTime).Milliseconds()
-		percentDurationElapsed := sdk.NewDec(shiftedBlockTime).QuoInt64(params.Duration.Milliseconds())
+		percentDurationElapsed := sdkMath.LegacyNewDec(shiftedBlockTime).QuoInt64(params.Duration.Milliseconds())
 		// If the duration elapsed is equal to the total time,
 		// or a rounding error makes it seem like it is, just set to target weight
-		if percentDurationElapsed.GTE(sdk.OneDec()) {
+		if percentDurationElapsed.GTE(sdkMath.LegacyOneDec()) {
 			pa.updateAllWeights(params.TargetPoolWeights)
 			return
 		}
@@ -393,19 +394,19 @@ func (pa *Pool) PokeTokenWeights(blockTime time.Time) {
 	}
 }
 
-func (pa Pool) GetTokenWeight(denom string) (sdk.Int, error) {
+func (pa Pool) GetTokenWeight(denom string) (sdkMath.Int, error) {
 	PoolAsset, err := pa.GetPoolAsset(denom)
 	if err != nil {
-		return sdk.Int{}, err
+		return sdkMath.Int{}, err
 	}
 
 	return PoolAsset.Weight, nil
 }
 
-func (pa Pool) GetTokenBalance(denom string) (sdk.Int, error) {
+func (pa Pool) GetTokenBalance(denom string) (sdkMath.Int, error) {
 	PoolAsset, err := pa.GetPoolAsset(denom)
 	if err != nil {
-		return sdk.Int{}, err
+		return sdkMath.Int{}, err
 	}
 
 	return PoolAsset.Token.Amount, nil
