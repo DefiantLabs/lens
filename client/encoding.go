@@ -1,12 +1,15 @@
 package client
 
 import (
+	"cosmossdk.io/x/tx/signing"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/cosmos/cosmos-sdk/codec/address"
 	"github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/std"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/x/auth/tx"
+	"github.com/cosmos/gogoproto/proto"
 )
 
 type Codec struct {
@@ -16,9 +19,9 @@ type Codec struct {
 	Amino             *codec.LegacyAmino
 }
 
-func MakeCodec(moduleBasics []module.AppModuleBasic) Codec {
+func MakeCodec(moduleBasics []module.AppModuleBasic, addressPrefix string, valAddressPrefix string) Codec {
 	modBasic := module.NewBasicManager(moduleBasics...)
-	encodingConfig := MakeCodecConfig()
+	encodingConfig := MakeCodecConfig(addressPrefix, valAddressPrefix)
 	std.RegisterLegacyAminoCodec(encodingConfig.Amino)
 	std.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 	modBasic.RegisterLegacyAminoCodec(encodingConfig.Amino)
@@ -37,8 +40,19 @@ func MakeCodec(moduleBasics []module.AppModuleBasic) Codec {
 	return encodingConfig
 }
 
-func MakeCodecConfig() Codec {
-	interfaceRegistry := types.NewInterfaceRegistry()
+func MakeCodecConfig(accAddressPrefix string, valAddressPrefix string) Codec {
+	interfaceRegistry, err := types.NewInterfaceRegistryWithOptions(types.InterfaceRegistryOptions{
+		ProtoFiles: proto.HybridResolver,
+		SigningOptions: signing.Options{
+			AddressCodec:          address.NewBech32Codec(accAddressPrefix),
+			ValidatorAddressCodec: address.NewBech32Codec(valAddressPrefix),
+		},
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
 	marshaler := codec.NewProtoCodec(interfaceRegistry)
 	return Codec{
 		InterfaceRegistry: interfaceRegistry,

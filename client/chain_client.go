@@ -51,7 +51,7 @@ func NewChainClient(ccc *ChainClientConfig, homepath string, input io.Reader, ou
 		Config:         ccc,
 		Input:          input,
 		Output:         output,
-		Codec:          MakeCodec(ccc.Modules),
+		Codec:          MakeCodec(ccc.Modules, ccc.AccountPrefix, ccc.ValAccountPrefix),
 		Logger:         log.NewTMLogger(log.NewSyncWriter(output)),
 	}
 	if err := cc.Init(); err != nil {
