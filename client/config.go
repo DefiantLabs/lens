@@ -9,43 +9,40 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
 	authz "github.com/cosmos/cosmos-sdk/x/authz/module"
 	"github.com/cosmos/cosmos-sdk/x/bank"
-	"github.com/cosmos/cosmos-sdk/x/capability"
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	"github.com/cosmos/cosmos-sdk/x/distribution"
 
 	// distrclient "github.com/cosmos/cosmos-sdk/x/distribution/client/cli"
-	feegrant "github.com/cosmos/cosmos-sdk/x/feegrant/module"
+	feegrant "cosmossdk.io/x/feegrant/module"
 	"github.com/cosmos/cosmos-sdk/x/gov"
 	"github.com/cosmos/cosmos-sdk/x/mint"
 	"github.com/cosmos/cosmos-sdk/x/params"
 
 	// paramsclient "github.com/cosmos/cosmos-sdk/x/params/client"
+	"cosmossdk.io/x/upgrade"
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	"github.com/cosmos/cosmos-sdk/x/staking"
-	"github.com/cosmos/cosmos-sdk/x/upgrade"
 
 	// upgradeclient "github.com/cosmos/cosmos-sdk/x/upgrade/client"
-	ibcInterchainAccounts "github.com/cosmos/ibc-go/v7/modules/apps/27-interchain-accounts"
-	"github.com/cosmos/ibc-go/v7/modules/apps/transfer"
-	ibc "github.com/cosmos/ibc-go/v7/modules/core"
-	ibcClient "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
-	osmosisApp "github.com/osmosis-labs/osmosis/v25/app/keepers"
-	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v25/x/concentrated-liquidity/clmodule"
-	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v25/x/cosmwasmpool/module"
-	osmosisGamm "github.com/osmosis-labs/osmosis/v25/x/gamm"
-	osmosisIncentives "github.com/osmosis-labs/osmosis/v25/x/incentives"
-	osmosisLockup "github.com/osmosis-labs/osmosis/v25/x/lockup"
-	osmosisMint "github.com/osmosis-labs/osmosis/v25/x/mint"
-	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v25/x/pool-incentives"
-	osmosisPoolManager "github.com/osmosis-labs/osmosis/v25/x/poolmanager/module"
-	osmosisProtorev "github.com/osmosis-labs/osmosis/v25/x/protorev"
-	osmosisSmartAccount "github.com/osmosis-labs/osmosis/v25/x/smart-account"
-	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v25/x/superfluid"
-	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v25/x/tokenfactory"
-	osmosisTxFees "github.com/osmosis-labs/osmosis/v25/x/txfees"
-	osmosisValsetPref "github.com/osmosis-labs/osmosis/v25/x/valset-pref/valpref-module"
+	ibcInterchainAccounts "github.com/cosmos/ibc-go/v8/modules/apps/27-interchain-accounts"
+	"github.com/cosmos/ibc-go/v8/modules/apps/transfer"
+	ibc "github.com/cosmos/ibc-go/v8/modules/core"
+	ibcClient "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
+	osmosisConcentratedLiquidity "github.com/osmosis-labs/osmosis/v26/x/concentrated-liquidity/clmodule"
+	osmosisCosmWasmPool "github.com/osmosis-labs/osmosis/v26/x/cosmwasmpool/module"
+	osmosisGamm "github.com/osmosis-labs/osmosis/v26/x/gamm"
+	osmosisIncentives "github.com/osmosis-labs/osmosis/v26/x/incentives"
+	osmosisLockup "github.com/osmosis-labs/osmosis/v26/x/lockup"
+	osmosisMint "github.com/osmosis-labs/osmosis/v26/x/mint"
+	osmosisPoolIncentives "github.com/osmosis-labs/osmosis/v26/x/pool-incentives"
+	osmosisPoolManager "github.com/osmosis-labs/osmosis/v26/x/poolmanager/module"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v26/x/protorev"
+	osmosisSuperfluid "github.com/osmosis-labs/osmosis/v26/x/superfluid"
+	osmosisTokenFactory "github.com/osmosis-labs/osmosis/v26/x/tokenfactory"
+	osmosisTxFees "github.com/osmosis-labs/osmosis/v26/x/txfees"
+	osmosisValsetPref "github.com/osmosis-labs/osmosis/v26/x/valset-pref/valpref-module"
 	osmosisEpochs "github.com/osmosis-labs/osmosis/x/epochs"
-	skipAuction "github.com/skip-mev/block-sdk/x/auction"
+	skipAuction "github.com/skip-mev/block-sdk/v2/x/auction"
 )
 
 var (
@@ -54,7 +51,6 @@ var (
 		auth.AppModuleBasic{},
 		authz.AppModuleBasic{},
 		bank.AppModuleBasic{},
-		capability.AppModuleBasic{},
 		// TODO: add osmosis governance proposal types here
 		// TODO: add other proposal types here
 		gov.AppModuleBasic{},
