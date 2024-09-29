@@ -7,7 +7,7 @@ import (
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributionTypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	stakingTypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	osmosisProtorev "github.com/osmosis-labs/osmosis/v25/x/protorev/types"
+	osmosisProtorev "github.com/osmosis-labs/osmosis/v26/x/protorev/types"
 	osmosisEpochs "github.com/osmosis-labs/osmosis/x/epochs/types"
 )
 

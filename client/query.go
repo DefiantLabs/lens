@@ -9,7 +9,9 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distTypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
-	transfertypes "github.com/cosmos/ibc-go/v7/modules/apps/transfer/types"
+	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
+
+	sdkMath "cosmossdk.io/math"
 )
 
 // queryBalanceWithAddress returns the amount of coins in the relayer account with address as input
@@ -93,7 +95,7 @@ func (cc *ChainClient) QueryBalanceWithDenomTraces(ctx context.Context, address 
 
 	var out sdk.Coins
 	for _, c := range coins {
-		if c.Amount.Equal(sdk.NewInt(0)) {
+		if c.Amount.Equal(sdkMath.NewInt(0)) {
 			continue
 		}
 
